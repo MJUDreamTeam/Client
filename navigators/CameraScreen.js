@@ -18,11 +18,4 @@ class CameraScreen extends React.Component {
   }
 }
 
-const AppNavigator = createStackNavigator(
-    {
-    Home: Home,
-    Camera: CameraScreen
-    }
-);
-
 export default CameraScreen;

@@ -18,11 +18,4 @@ class DirectMessageScreen extends React.Component {
   }
 }
 
-const AppNavigator = createStackNavigator(
-    {
-    Home: Home,
-    DirectMessage: DirectMessageScreen
-    }
-);
-
 export default DirectMessageScreen;
