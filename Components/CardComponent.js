@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {View, Image, Text, StyleSheet} from 'react-native';
 import {Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon} from 'native-base';
 
-export default class CardComponent extends Component{
+class CardComponent extends React.Component{
     render() {
         return (
             <Card>
@@ -47,3 +47,5 @@ export default class CardComponent extends Component{
         );
     }
 }
+
+export default CardComponent;
