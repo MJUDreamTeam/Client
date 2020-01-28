@@ -1,8 +1,7 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import {Icon, Container, Content} from 'native-base';
 import CardComponent from '../Components/CardComponent';
-import {Ionicons} from 'react-native-vector-icons/Ionicons'
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -20,7 +19,7 @@ class HomeScreen extends React.Component {
             </Container>
         </View>
         );
-  }
+    }
 }
 const style = StyleSheet.create({
     container: {
