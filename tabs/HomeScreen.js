@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import {Icon} from 'native-base';
+import { Text, View, StyleSheet } from 'react-native';
+import {Icon, Container, Content} from 'native-base';
+import CardComponent from '../Components/CardComponent';
 import {Ionicons} from 'react-native-vector-icons/Ionicons'
 
 class HomeScreen extends React.Component {
@@ -11,11 +12,26 @@ class HomeScreen extends React.Component {
     }
     render() {
         return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>기본 타임라인 구성</Text>
+        <View style={style.view}>
+            <Container style={style.container}>
+                <Content>
+                    <CardComponent />
+                </Content>
+            </Container>
         </View>
         );
   }
 }
+const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
+    view: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+})
 
 export default HomeScreen;
