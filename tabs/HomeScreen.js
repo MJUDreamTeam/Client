@@ -10,6 +10,15 @@ class HomeScreen extends React.Component {
         tabBarIcon:({tintColor})=>(
             <Icon name='ios-home' style={{color:tintColor}}/>
         )
+        ,headerLeft:()=>
+            <Button icon transparent onPress={()=>{alert('카메라 실행')}}>
+                <Icon name='camera' style={{paddingLeft:10}}/>
+            </Button>
+        ,title: 'Instagram'
+        ,headerRight:()=>
+            <Button icon transparent onPress={()=>{alert('DM 메시지 화면')}}>
+                <Icon name='send' style={{paddingRight:10}}/>
+            </Button>
     }
     render() {
         return (
