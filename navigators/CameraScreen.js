@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import Home from '../MainScreeen';
 
 class CameraScreen extends React.Component {
     // 그냥 화면만 띄우기
@@ -12,7 +11,7 @@ class CameraScreen extends React.Component {
             <Text>카메라 실행 예정</Text>
             <Button
             title = 'Go Home screen'
-            onPress = {()=>this.props.navigation.navigate('Home')}/>
+            onPress = {alert('흥항훙')}/>
         </View>
         );
   }
