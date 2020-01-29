@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet} from 'react-native';
 import {Icon, Container, Content} from 'native-base';
 import CardComponent from '../Components/CardComponent';
 import StoryHeaderList from '../Components/StoryHeaderList';

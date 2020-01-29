@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import {Icon} from 'native-base';
+import {View, StyleSheet } from 'react-native';
+import {Container, Content,Icon} from 'native-base';
 import {Ionicons} from 'react-native-vector-icons/Ionicons'
+import { Thumbnail} from 'native-base';
+import ActivityList from '../Components/Activity/ActivityList';
 
 class LikesScreen extends React.Component {
     static navigationOptions = {
@@ -11,11 +13,19 @@ class LikesScreen extends React.Component {
     }
     render() {
         return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>나의 인스타 활동 로그 출력</Text>
-        </View>
+            <Container style={style.container}>
+                <ActivityList />
+            </Container>
         );
   }
 }
 
+const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        alignItems: 'center'
+    }
+})
 export default LikesScreen;
