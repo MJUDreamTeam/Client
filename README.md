@@ -34,6 +34,11 @@ React Navigator 같은 경우는 버전의 호환이 매우 중요
 
 	하부에 핵심 기능 5가지를 각각 다른 파일로 나누어 놓았다.
 
+* Components/Activity 폴더
+
+	활동 기능에 들어갈 댓글, 좋아요, 랜덤추천, 팔로우 컴포넌트가 들어있다.
+
+
 ## 추가 파일 목록
 
 * MainScreen.js
@@ -45,3 +50,13 @@ React Navigator 같은 경우는 버전의 호환이 매우 중요
 * LikesScreen.js
 * ProfileScreen.js
 * SearchScreen.js
+
+
+* ActivityList.js
+* CommentComponent.js
+* FollowButton.js
+* FollowComponent.js
+* LikeComponent.js
+* RecommendComponent.js
+
+

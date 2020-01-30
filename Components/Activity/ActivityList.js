@@ -21,38 +21,59 @@ class ActivityList extends React.Component{
                 {type: 0, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", 
                 likePersonList: ["im.se_0","americano__"], likeNum: 38, date: 1, 
                 myPost: "https://rdd9223.github.io/assets/images/profile.jpg"},
-                {type: 0, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", 
+               
+                {type: 0, otherThumbnail: "https://avatars0.githubusercontent.com/u/51014797?s=64&v=4", 
                 likePersonList: ["__se._.0","garomi__"], likeNum: 40, date: 2, 
                 myPost: "https://avatars2.githubusercontent.com/u/52193680?s=64&v=4"},
-                {type: 1, otherThumbnail: "https://avatars3.githubusercontent.com/u/49789734?s=80&v=4", 
+                
+                {type: 1, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", 
                 otherName: "im.se_0", content: "사진 주소가 너무 많이 필요해서", date: 3, 
                 myPost: "https://rdd9223.github.io/assets/images/profile.jpg"},
+                
                 {type: 3, recommendThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", 
                 recommendPersonList: ["lion","tiger"], date: 3},
-                {type: 1, otherThumbnail: "https://avatars2.githubusercontent.com/u/52193680?s=64&v=4"},
-                {type: 2, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", 
-                otherName: "react_22",date: 5, isFollowed: false},
-                {type: 2, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", 
-                otherName: "native_3333",date: 7, isFollowed: false},
-                {type: 3, recommendThumbnail: "https://avatars2.githubusercontent.com/u/55945829?s=64&v=4", 
-                recommendPersonList: ["bird","dog"], date: 10},
-                {type: 1, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", 
-                otherName: "garomi__", content: "사진좀 빌리겟음다...... ㅎㅎ 멍멍이 가로밍", 
-                date: 15, myPost: "https://avatars2.githubusercontent.com/u/55945829?s=64&v=4"},
-                {type: 0, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", likePersonList: ["twosome_place","kakao"], likeNum: 130, date: 20, 
-                myPost: "https://rdd9223.github.io/assets/images/profile.jpg"},
+                
+                {type: 1, otherThumbnail: "https://avatars0.githubusercontent.com/u/51014797?s=64&v=4",
+                otherName: "2hours", content: "일단 임시로", date: 4,
+                myPost: "https://avatars2.githubusercontent.com/u/55945829?s=64&v=4"},
+                
+                {
+                    type: 2, otherThumbnail: "https://avatars0.githubusercontent.com/u/51014797?s=64&v=4",
+                    otherName: "react_22", date: 5, isFollowing: false
+                },
+
+                {
+                    type: 2, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg",
+                    otherName: "native_3333", date: 7, isFollowing: true
+                },
+
+                {
+                    type: 3, recommendThumbnail: "https://avatars2.githubusercontent.com/u/55945829?s=64&v=4",
+                    recommendPersonList: ["bird", "dog"], date: 10
+                },
+
+                {
+                    type: 1, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg",
+                    otherName: "garomi__", content: "사진좀 빌리겟음다...... ㅎㅎ 멍멍이 가로밍",
+                    date: 15, myPost: "https://avatars2.githubusercontent.com/u/55945829?s=64&v=4"
+                },
+
+                {
+                    type: 0, otherThumbnail: "https://rdd9223.github.io/assets/images/profile.jpg", likePersonList: ["twosome_place", "kakao"], likeNum: 130, date: 20,
+                    myPost: "https://rdd9223.github.io/assets/images/profile.jpg"
+                },
             ]
         }
     }
 
     //실제 보여지는 부분
-    render(){
+    render() {
         const { myActivities } = this.state;
-         //좋아요, 댓글 컴포넌트의 사진, 설명, 사진 비율
-         //팔로우의 컴포넌트의 사진, 설명, 팔로우버튼 비율
-         //친구추천의 사진, 설명 비율 
+        //좋아요, 댓글 컴포넌트의 사진, 설명, 사진 비율
+        //팔로우의 컴포넌트의 사진, 설명, 팔로우버튼 비율
+        //친구추천의 사진, 설명 비율 
         return (
-            <View style={{marginTop: 25, width: "100%"}}>
+            <View style={{ marginTop: 25, width: "100%" }}>
                 <ScrollView contentContainerStyle={{flexGrow:1}}>
                     {myActivities.map(activity => {
                         if (activity.type === 0) { //좋아요

@@ -11,14 +11,14 @@ class RecommendComponent extends React.Component{
         const myUri = activity.recommendThumbnail;
         return(
             <View style= {style.container}>
-                <View style= {style.otherThumbnail}>
+                <View style= {style.thumbnail}>
                     <Thumbnail source={{uri: myUri}} />
                 </View>
                 <View style= {style.content}>
                     <Text>
                         <Text>
                             {activity.recommendPersonList[0]} 님, {activity.recommendPersonList[1]} 님 외 
-                            지인의 사진 및 동영상을 보려면 팔로우하세요.
+                            지인의 사진 및 동영상을 보려면 팔로우하세요. 
                         </Text>
                         <Text style = {{color: '#595959', fontSize: 12}}>
                             {activity.date}주
@@ -35,7 +35,7 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         height: 80, padding:10,
     },
-    otherThumbnail:{
+    thumbnail:{
         flex: 1,
         padding: 4,
     },
