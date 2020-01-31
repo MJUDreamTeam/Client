@@ -6,22 +6,30 @@ import StoryHeaderComponent from './StoryHeaderComponent';
 class StoryHeaderList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isLoading: true};
+        this.state = { isLoading: true };
+        // 메모리 누수 콘트롤러
         this.abortController = new AbortController();
     }
-    componentDidMount() {
-        return fetch('https://jsonplaceholder.typicode.com/users', {signal: this.abortController.signal})
+
+    _getData = () => {
+        const url = 'https://jsonplaceholder.typicode.com/users?_limit=8';
+        fetch(url)
             .then(res => res.json())
-            .then(resJson => {
+            .then(json => {
                 this.setState({
                     isLoading: false,
-                    users: resJson
+                    users: json
                 });
             })
             .catch(err => {
                 console.error(err);
             });
     }
+
+    componentDidMount() {
+        this._getData();
+    }
+
 
     componentWillUnmount(): void {
         this.abortController.abort();
