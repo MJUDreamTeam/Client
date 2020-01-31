@@ -25,30 +25,23 @@ class StoryHeaderList extends React.Component {
     render() {
         const {users} = this.state;
         return(
-        <View style={{ height: 100}}>
-            <View style={{ flex:1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 7}}>
-                <Text style={{ fontWeight: 'bold'}}>Stories</Text>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Icon name="md-play" style={{ fontSize: 14}}></Icon>
-                    <Text style={{fontWeight: 'bold'}}> Watch All</Text>
+            <View style={{ height: 80}}>
+                <View style={{ flex: 3 , justifyContent: 'center'}}>
+                    <ScrollView horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                contentContainerStyle={{
+                                    alignItems: 'center',
+                                    paddingStart: 5,
+                                    paddingEnd: 5,
+                                }}>
+                        {users.map(user => {
+                            return (
+                                <StoryHeaderComponent user={user} />
+                            )
+                        })}
+                    </ScrollView>
                 </View>
             </View>
-            <View style={{ flex: 3}}>
-                <ScrollView horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            contentContainerStyle={{
-                                alignItems: 'center',
-                                paddingStart: 5,
-                                paddingEnd: 5
-                            }}>
-                    {users.map(user => {
-                        return (
-                            <StoryHeaderComponent user={user} />
-                        )
-                    })}
-                </ScrollView>
-            </View>
-        </View>
         )
     }
 }

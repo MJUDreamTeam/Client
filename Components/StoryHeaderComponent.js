@@ -1,5 +1,6 @@
 import React from 'react';
-import {Thumbnail} from "native-base";
+import {Thumbnail, Body} from "native-base";
+import {View, Text} from 'react-native';
 
 class StoryHeaderComponent extends React.Component {
     constructor(props) {
@@ -10,9 +11,14 @@ class StoryHeaderComponent extends React.Component {
         const {user} = this.props;
 
         return (
-            <Thumbnail
-                style={{ marginHorizontal: 5, borderColor: 'pink', borderWidth: 2 }}
-                source={{uri: user.image}} />
+            <View style={{ margin: 5 }}>
+                <Thumbnail
+                    style={{ borderColor: 'pink', borderWidth: 2 }}
+                    source={{uri: user.image}} />
+                <Body>
+                    <Text note>{user.name}</Text>
+                </Body>
+            </View>
         )
     }
 }
