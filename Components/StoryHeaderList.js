@@ -1,6 +1,5 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import {Content, Icon, Thumbnail} from 'native-base';
+import {ScrollView, View} from 'react-native';
 import StoryHeaderComponent from './StoryHeaderComponent';
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Icon, Container, Content} from 'native-base';
 import CardComponent from '../Components/CardComponent';
 import StoryHeaderList from '../Components/StoryHeaderList';
@@ -26,15 +26,15 @@ class HomeScreen extends React.Component {
     }
 }
 const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white'
-    },
-    view: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default HomeScreen;
