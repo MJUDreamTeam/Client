@@ -1,28 +1,43 @@
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, View, ActivityIndicator} from 'react-native';
 import StoryHeaderComponent from './StoryHeaderComponent';
 
 
 class StoryHeaderList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { isLoading: true};
+        this.abortController = new AbortController();
+    }
+    componentDidMount() {
+        return fetch('https://jsonplaceholder.typicode.com/users', {signal: this.abortController.signal})
+            .then(res => res.json())
+            .then(resJson => {
+                this.setState({
+                    isLoading: false,
+                    users: resJson
+                });
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
 
-        this.state = {
-            users: [
-                {id: 1, name: '영우', image: 'https://avatars3.githubusercontent.com/u/49789734?s=80&v=4'},
-                {id: 2, name: '영우', image: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4'},
-                {id: 3, name: '영우', image: 'https://avatars1.githubusercontent.com/u/48307960?s=64&v=4'},
-                {id: 4, name: '영우', image: 'https://avatars1.githubusercontent.com/u/9072200?s=64&v=4'},
-                {id: 5, name: '영우', image: 'https://avatars2.githubusercontent.com/u/18691542?s=64&v=4'},
-                {id: 6, name: '영우', image: 'https://avatars2.githubusercontent.com/u/45916875?s=64&v=4'},
-                {id: 7, name: '영우', image: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4'},
-                {id: 8, name: '영우', image: 'https://avatars2.githubusercontent.com/u/55945829?s=64&v=4'}
-            ]
-        }
+    componentWillUnmount(): void {
+        this.abortController.abort();
     }
 
     render() {
-        const {users} = this.state;
+        const users = this.state.users;
+
+        if(this.state.isLoading) {
+            return (
+                <View style={{flex: 1, padding: 20}}>
+                    <ActivityIndicator/>
+                </View>
+            )
+        }
+
         return(
             <View style={{ height: 80}}>
                 <View style={{ flex: 3 , justifyContent: 'center'}}>
