@@ -16,8 +16,8 @@ class StoryHeaderComponent extends React.Component {
                     style={{ borderColor: 'pink', borderWidth: 2 }}
                     // source={{uri: user.image}} />
                     source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'}}/>
-                <Body>
-                    <Text style={{ fontSize: 10 }}>{user.name}</Text>
+                <Body style={{ whiteSpace: 'nowrap', overflow: 'hidden' }}>
+                    <Text numberOfLines={1} style={{ fontSize: 10, textAlign: 'center' }}>{user.name}</Text>
                 </Body>
             </View>
         )
