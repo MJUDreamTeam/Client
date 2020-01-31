@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import {navigation} from 'react-navigation';
 import {Icon, Button} from 'native-base';
 
 // 상단 네비게이션 stack 화면을 위한 import
@@ -13,15 +14,7 @@ import TabNavigator from './navigators/navigationbar';
 
 class MainScreen extends React.Component{
     static navigationOptions = {
-        headerLeft:()=>
-            <Button icon transparent onPress={()=>{alert('카메라 실행')}}>
-                <Icon name='camera' style={{paddingLeft:10}}/>
-            </Button>
-        ,title: 'Instagram'
-        ,headerRight:()=>
-            <Button icon transparent onPress={()=>{alert('DM 메시지 화면')}}>
-                <Icon name='send' style={{paddingRight:10}}/>
-            </Button>
+        
     }
     render(){
         return(
@@ -30,14 +23,17 @@ class MainScreen extends React.Component{
     }
 }
 
-const AppNavigator = createStackNavigator(
-    {
-        Home: MainScreen,
-        Camera: CameraScreen,
-        DirectMessage : DirectMessageScreen
-    }
-);
+// const AppNavigator = createStackNavigator(
+//     {
+//         Home: MainScreen,
+//         Camera: CameraScreen,
+//         DirectMessage : DirectMessageScreen
+//     },
+//     {
+//         headerMode: 'none'
+//     }
+// );
+    
+// const StackContainer = createAppContainer(AppNavigator);
 
-const StackContainer = createAppContainer(AppNavigator);
-
-export default StackContainer;
+export default MainScreen;

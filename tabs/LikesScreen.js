@@ -4,11 +4,7 @@ import {Icon} from 'native-base';
 import {Ionicons} from 'react-native-vector-icons/Ionicons'
 
 class LikesScreen extends React.Component {
-    static navigationOptions = {
-        tabBarIcon:({tintColor})=>(
-            <Icon name='heart' style={{color:tintColor}}/>
-        )
-    }
+    
     render() {
         return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

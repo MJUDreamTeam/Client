@@ -4,7 +4,6 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import {Icon,Button} from 'native-base';
-import {Icons} from 'react-native-vector-icons'
 
 // 상단 네비게이션 stack 화면을 위한 import
 import CameraScreen from './CameraScreen';
@@ -18,11 +17,46 @@ import SearchScreen from '../tabs/SearchScreen';
 
 const TabNavigator = createBottomTabNavigator(
     {
-        Home: HomeScreen,
-        Search: SearchScreen,
-        AddMedia : AddMediaScreen,
-        Likes : LikesScreen,
-        Profile : ProfileScreen
+        Home: {
+            screen : HomeScreen,
+            navigationOptions: ({navigation}) => ({
+                tabBarIcon:({tintColor})=>(
+                    <Icon name='ios-home' style={{color:tintColor}}/>
+                )
+            })
+        },
+        Search:{
+            screen : SearchScreen,
+            navigationOptions: ({navigation}) => ({
+                tabBarIcon:({tintColor})=>(
+                    <Icon name='ios-search' style={{color:tintColor}}/>
+                )
+            })
+        },
+        AddMedia : {
+            screen : AddMediaScreen,
+            navigationOptions: ({navigation}) => ({
+                tabBarIcon:({tintColor})=>(
+                    <Icon name='ios-add-circle-outline' style={{color:tintColor}}/>
+                )
+            })
+        },
+        Likes : {
+            screen : LikesScreen,
+            navigationOptions: ({navigation}) => ({
+                tabBarIcon:({tintColor})=>(
+                    <Icon name='heart' style={{color:tintColor}}/>
+                )
+            })
+        },
+        Profile : {
+            screen : ProfileScreen,
+            navigationOptions: ({navigation}) => ({
+                tabBarIcon:({tintColor})=>(
+                    <Icon name='contact' style={{color:tintColor}}/>
+                )
+            })
+        }
     },
     {
         animationEnabled: true,
