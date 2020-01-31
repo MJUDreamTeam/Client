@@ -36,7 +36,7 @@ class StoryHeaderList extends React.Component {
                                 }}>
                         {users.map(user => {
                             return (
-                                <StoryHeaderComponent user={user} />
+                                <StoryHeaderComponent key={user.id} user={user} />
                             )
                         })}
                     </ScrollView>
