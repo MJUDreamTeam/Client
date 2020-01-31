@@ -15,6 +15,7 @@ import HomeScreen from '../tabs/HomeScreen';
 import LikesScreen from '../tabs/LikesScreen';
 import ProfileScreen from '../tabs/ProfileScreen';
 import SearchScreen from '../tabs/SearchScreen';
+import EditProfile from '../Components/Profile/EditProfile';
 
 const TabNavigator = createBottomTabNavigator(
   {
