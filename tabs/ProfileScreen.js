@@ -77,7 +77,9 @@ class ProfileScreen extends React.Component {
               marginHorizontal: 30,
               height: 36,
             }}
-            onPress={() => alert('프로필 수정 클릭', 'Edit Profile tapped')}>
+            onPress={() => {
+              alert('dddd');
+            }}>
             <Text>프로필 수정</Text>
           </Button>
           <PostsNavigator />

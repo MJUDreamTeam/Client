@@ -6,6 +6,9 @@ import {
   FlatList,
   Image,
   Dimensions,
+  SafeAreaView,
+  Text,
+  ScrollView,
 } from 'react-native';
 
 const data = [
@@ -19,32 +22,63 @@ const data = [
 ];
 
 const numColumns = 3;
-export default class PostsView extends React.Component {
-  renderItem = ({item, index}) => {
-    var ImageSource = item.key;
 
+class InnerScrollView extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        {data.map((contact, i) => {
+          return <ScrollViewItem src={contact.key} key={i} />;
+        })}
+      </View>
+    );
+  }
+}
+class ScrollViewItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      src: ' ',
+    };
+  }
+  render() {
     return (
       <View style={styles.item}>
         <Image
-          source={{uri: ImageSource}}
+          source={{uri: this.props.src}}
           style={{
-            width: Dimensions.get('window').width / numColumns,
-            height: Dimensions.get('window').width / numColumns,
+            width: Dimensions.get('window').width / numColumns - 1,
+            height: Dimensions.get('window').width / numColumns - 1,
           }}
         />
       </View>
     );
-  };
+  }
+}
+
+export default class PostsView extends React.Component {
+  // renderItem = ({item, index}) => {
+  //   var ImageSource = item.key;
+
+  //   return (
+  //     <View style={styles.item}>
+  //       <Image
+  //         source={{uri: ImageSource}}
+  //         style={{
+  //           width: Dimensions.get('window').width / numColumns,
+  //           height: Dimensions.get('window').width / numColumns,
+  //         }}
+  //       />
+  //     </View>
+  //   );
+  // };
   render() {
     return (
-      <View>
-        <FlatList
-          data={data}
-          style={styles.container}
-          renderItem={this.renderItem}
-          numColumns={numColumns}
-        />
-      </View>
+      <SafeAreaView style={{flex: 1}}>
+        <ScrollView>
+          <InnerScrollView />
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
@@ -58,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     margin: 0.5,
     //flex: 1,
-    width: Dimensions.get('window').width / numColumns,
-    height: Dimensions.get('window').width / numColumns,
+    width: Dimensions.get('window').width / numColumns - 1,
+    height: Dimensions.get('window').width / numColumns - 1,
   },
 });

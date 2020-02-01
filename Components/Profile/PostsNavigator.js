@@ -1,7 +1,5 @@
 import React from 'react';
-import {Icon} from 'native-base';
 import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 
 import MyPosts from './MyPosts';
