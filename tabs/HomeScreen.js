@@ -1,11 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Icon, Container, Content} from 'native-base';
-import CardComponent from '../Components/CardComponent';
-import CardList from '../Components/CardList';
-import StoryHeaderList from '../Components/Story/StoryHeaderList';
-import { Text, ScrollView } from 'react-native';
-import { Thumbnail} from 'native-base';
+import CardList from '../Components/Card/CardList';
 
 class HomeScreen extends React.Component {
     static navigationOptions = {

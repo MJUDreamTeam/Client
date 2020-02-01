@@ -1,9 +1,7 @@
 import React from 'react';
-import {View, Image, Text, FlatList, ScrollView} from 'react-native';
-import {List, ListItem} from 'native-base';
+import {FlatList} from 'react-native';
 import CardComponent from './CardComponent';
-import StoryHeaderList from './Story/StoryHeaderList';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import StoryHeaderList from '../Story/StoryHeaderList';
 
 class CardList extends React.Component {
     state = { boards: [], page: 1, refreshing: false }
