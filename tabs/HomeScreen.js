@@ -2,7 +2,8 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Icon, Container, Content} from 'native-base';
 import CardComponent from '../Components/CardComponent';
-import StoryHeaderList from '../Components/StoryHeaderList';
+import CardList from '../Components/CardList';
+import StoryHeaderList from '../Components/Story/StoryHeaderList';
 import { Text, ScrollView } from 'react-native';
 import { Thumbnail} from 'native-base';
 
@@ -16,10 +17,7 @@ class HomeScreen extends React.Component {
         return (
         <View style={style.view}>
             <Container style={style.container}>
-                <Content>
-                    <StoryHeaderList />
-                    <CardComponent />
-                </Content>
+                <CardList />
             </Container>
         </View>
         );
