@@ -37,6 +37,10 @@ target 'cloneInsta' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'cloneInstaTests' do
     inherit! :search_paths
     # Pods for testing

@@ -22,7 +22,7 @@ const TabNavigator = createBottomTabNavigator(
             navigationOptions: ({navigation}) => ({
                 tabBarIcon:({tintColor})=>(
                     <Icon name='ios-home' style={{color:tintColor}}/>
-                )
+                ),
             })
         },
         Search:{

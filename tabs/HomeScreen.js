@@ -7,6 +7,11 @@ import { Thumbnail,Button} from 'native-base';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
+//DM 메시지 스크린 연동
+import DirectMessageScreen from '../directMessage/DirectMessageScreen'
+// 카메라 스크린 연동
+import CameraScreen from '../navigators/CameraScreen'
+
 class HomeScreen extends React.Component {
     render() {
         return (
@@ -76,21 +81,55 @@ const style = StyleSheet.create({
     }
 })
 
-const HomeStack = createStackNavigator({
-    Instagram : {
-        screen : HomeScreen,
-        navigationOptions:({navigation}) => ({
-            headerLeft:()=>
-            <Button icon transparent onPress={()=>{alert('카메라 실행')}}>
-                <Icon name='camera' style={{paddingLeft:10}}/>
-            </Button>
-            ,title: 'Instagram'
-            ,headerRight:()=>
-                <Button icon transparent onPress={()=>{alert('DM 메시지 화면')}}>
-                    <Icon name='send' style={{paddingRight:10}}/>
+const HomeStack = createStackNavigator(
+    {
+        Home : {
+            screen : HomeScreen,
+            navigationOptions:({navigation}) => ({
+                headerLeft:()=>
+                <Button icon transparent onPress={()=> navigation.navigate('Camera')}>
+                    <Icon name='camera' style={{paddingLeft:10}}/>
                 </Button>
-        })
+                ,title: 'Instagram'
+                ,headerRight:()=>
+                    <Button icon transparent onPress={() => navigation.navigate('DirectMessage')}>
+                        <Icon name='send' style={{paddingRight:10}}/>
+                    </Button>
+            })
+        },
+
+        DirectMessage : {
+            screen : DirectMessageScreen,
+        },
+        Camera:{
+            screen: CameraScreen,
+            navigationOptions:({navigation}) => ({
+                headerShown:false,
+
+                
+            }),
+        }
+    },
+    {
+        initialRouteName:'Home'
+    },
+);
+
+HomeStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible;
+    if (navigation.state.routes.length > 1) {
+      navigation.state.routes.map(route => {
+        if (route.routeName === "Camera") {
+          tabBarVisible = false;
+        } else {
+          tabBarVisible = true;
+        }
+      });
     }
-});
+  
+    return {
+      tabBarVisible
+    };
+};
 
 export default HomeStack;
