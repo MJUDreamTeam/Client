@@ -1,23 +1,17 @@
 import React from 'react';
-import {Text, View, TouchableHighlight} from 'react-native';
-import {
-  Icon,
-  Container,
-  Content,
-  Header,
-  Left,
-  Body,
-  Right,
-  Button,
-  Thumbnail,
-} from 'native-base';
-import PostsNavigator from '../Components/Profile/PostsNavigator';
-
+import {Text, View, TouchableOpacity} from 'react-native';
+import {Icon, Container, Content, Button, Thumbnail} from 'native-base';
+import PostsNavigator from '../navigators/PostsNavigator';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import EditProfile from '../Components/Profile/EditProfile';
+import FollowScreen from '../Components/Profile/FollowScreen';
 class ProfileScreen extends React.Component {
   static navigationOptions = {
     tabBarIcon: ({tintColor}) => (
       <Icon name="contact" style={{color: tintColor}} />
     ),
+    headerShown: false,
   };
   render() {
     return (
@@ -30,7 +24,7 @@ class ProfileScreen extends React.Component {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <TouchableHighlight
+              <TouchableOpacity
                 onPress={() => alert('프로필 사진 클릭', 'Image tapped')}>
                 <Thumbnail
                   large
@@ -44,7 +38,7 @@ class ProfileScreen extends React.Component {
                       'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
                   }}
                 />
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
             <View style={{flex: 2, marginTop: 10}}>
               <View
@@ -57,12 +51,22 @@ class ProfileScreen extends React.Component {
                   <Text style={{fontSize: 10, color: 'gray'}}>게시물</Text>
                 </View>
                 <View style={{alignItems: 'center'}}>
-                  <Text>100</Text>
-                  <Text style={{fontSize: 10, color: 'gray'}}>팔로워</Text>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('Follow')}>
+                    <View>
+                      <Text>100</Text>
+                      <Text style={{fontSize: 10, color: 'gray'}}>팔로워</Text>
+                    </View>
+                  </TouchableOpacity>
                 </View>
                 <View style={{alignItems: 'center'}}>
-                  <Text>100</Text>
-                  <Text style={{fontSize: 10, color: 'gray'}}>팔로잉</Text>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.navigate('Follow')}>
+                    <View>
+                      <Text>100</Text>
+                      <Text style={{fontSize: 10, color: 'gray'}}>팔로워</Text>
+                    </View>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -77,9 +81,7 @@ class ProfileScreen extends React.Component {
               marginHorizontal: 30,
               height: 36,
             }}
-            onPress={() => {
-              alert('dddd');
-            }}>
+            onPress={() => this.props.navigation.navigate('Edit')}>
             <Text>프로필 수정</Text>
           </Button>
           <PostsNavigator />
@@ -88,5 +90,20 @@ class ProfileScreen extends React.Component {
     );
   }
 }
+const AppNavigator = createStackNavigator(
+  {
+    Home: ProfileScreen,
+    Edit: EditProfile,
+    Follow: FollowScreen,
+  },
+  {
+    initialRouteName: 'Home',
+    /* The header config from HomeScreen is now here */
+    defaultNavigationOptions: {
+      headerShown: false,
+    },
+  },
+);
+export default createAppContainer(AppNavigator);
 
-export default ProfileScreen;
+//export default ProfileScreen;

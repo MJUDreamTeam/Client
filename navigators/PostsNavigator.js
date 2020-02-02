@@ -1,9 +1,8 @@
-import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 
-import MyPosts from './MyPosts';
-import TaggedPosts from './TaggedPosts';
+import MyPosts from '../Components/Profile/MyPosts';
+import TaggedPosts from '../Components/Profile/TaggedPosts';
 
 const PostsNavigator = createMaterialTopTabNavigator(
   {

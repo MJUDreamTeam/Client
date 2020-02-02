@@ -37,9 +37,6 @@ class InnerScrollView extends React.Component {
 class ScrollViewItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      src: ' ',
-    };
   }
   render() {
     return (
@@ -57,21 +54,6 @@ class ScrollViewItem extends React.Component {
 }
 
 export default class PostsView extends React.Component {
-  // renderItem = ({item, index}) => {
-  //   var ImageSource = item.key;
-
-  //   return (
-  //     <View style={styles.item}>
-  //       <Image
-  //         source={{uri: ImageSource}}
-  //         style={{
-  //           width: Dimensions.get('window').width / numColumns,
-  //           height: Dimensions.get('window').width / numColumns,
-  //         }}
-  //       />
-  //     </View>
-  //   );
-  // };
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>

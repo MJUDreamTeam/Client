@@ -18,32 +18,14 @@ import {StyleSheet} from 'react-native';
 import EditText from './EditText';
 
 export default class EditProfile extends React.Component {
-  //   static navigationOptions = {
-  //     headerLeft: () => (
-  //       <Button
-  //         onPress={() => {
-  //           alert('취소');
-  //         }}>
-  //         <Text>취소</Text>
-  //       </Button>
-  //     ),
-  //     title: '프로필 수정',
-  //     headerRight: () => (
-  //       <Button
-  //         onPress={() => {
-  //           alert('확인');
-  //         }}>
-  //         <Text>확인</Text>
-  //       </Button>
-  //     ),
-  //   };
-
   render() {
     return (
       <Container style={{flex: 1, backgroundColor: 'white'}}>
         <Header>
           <Left style={{flex: 2}}>
-            <Button onPress={() => alert('취소')} style={{width: '90%'}}>
+            <Button
+              onPress={() => this.props.navigation.goBack()}
+              style={{width: '90%'}}>
               <Text>취소</Text>
             </Button>
           </Left>
@@ -52,7 +34,7 @@ export default class EditProfile extends React.Component {
           </Body>
           <Right style={{flex: 1.5}}>
             <Button
-              onPress={() => alert('확인')}
+              onPress={() => this.props.navigation.goBack()}
               style={{width: '90%', flexDirection: 'row-reverse'}}>
               <Text>확인</Text>
             </Button>
