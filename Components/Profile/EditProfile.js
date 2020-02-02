@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  Icon,
   Container,
   Content,
   Header,
@@ -12,7 +11,6 @@ import {
   Thumbnail,
   Title,
   Text,
-  TextInput,
 } from 'native-base';
 import {StyleSheet} from 'react-native';
 import EditText from './EditText';
