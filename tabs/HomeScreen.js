@@ -40,4 +40,55 @@ const style = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+const HomeStack = createStackNavigator(
+    {
+        Home : {
+            screen : HomeScreen,
+            navigationOptions:({navigation}) => ({
+                headerLeft:()=>
+                <Button icon transparent onPress={()=> navigation.navigate('Camera')}>
+                    <Icon name='camera' style={{paddingLeft:10}}/>
+                </Button>
+                ,title: 'Instagram'
+                ,headerRight:()=>
+                    <Button icon transparent onPress={() => navigation.navigate('DirectMessage')}>
+                        <Icon name='send' style={{paddingRight:10}}/>
+                    </Button>
+            })
+        },
+
+        DirectMessage : {
+            screen : DirectMessageScreen,
+        },
+        Camera:{
+            screen: CameraScreen,
+            navigationOptions:({navigation}) => ({
+                headerShown:false,
+
+                
+            }),
+        }
+    },
+    {
+        initialRouteName:'Home'
+    },
+);
+
+HomeStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible;
+    if (navigation.state.routes.length > 1) {
+      navigation.state.routes.map(route => {
+        if (route.routeName === "Camera") {
+          tabBarVisible = false;
+        } else {
+          tabBarVisible = true;
+        }
+      });
+    }
+  
+    return {
+      tabBarVisible
+    };
+};
+
+export default HomeStack;
