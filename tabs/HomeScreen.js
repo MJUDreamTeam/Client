@@ -1,7 +1,10 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Icon, Container, Content} from 'native-base';
+import {Icon, Container, Content,Button} from 'native-base';
 import CardList from '../Components/Card/CardList';
+import {createStackNavigator} from 'react-navigation-stack';
+import DirectMessageScreen from '../directMessage/DirectMessageScreen';
+import CameraScreen from '../navigators/CameraScreen';
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
