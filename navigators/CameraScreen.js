@@ -45,9 +45,31 @@ class CameraScreen extends PureComponent {
         const options = { quality: 0.5 };
         const data = await this.camera.takePictureAsync(options).then(data => {
           ToastAndroid.show(data.uri, ToastAndroid.SHORT);
-          CameraRoll.saveToCameraRoll(data.uri);
-          console.log(data);
-        });
+          try {
+            const granted = PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+              {
+                title: '사진 저장용 외부저장소 사용 권한',
+                message:
+                '외부 저장소를 사용하려 합니다.' +
+                '예 를 누르시면 저장됩니다.',
+                buttonNeutral: 'Ask Me Later',
+                buttonNegative: 'Cancel',
+                buttonPositive: 'OK',
+              },
+              );
+              if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                console.log('You can use the camera');
+              } else {
+                console.log('Write permission denied');
+              }
+            } catch (err) {
+              console.warn(err);
+            }
+            
+            CameraRoll.saveToCameraRoll(data.uri);
+
+          });
       }
     };
 }
