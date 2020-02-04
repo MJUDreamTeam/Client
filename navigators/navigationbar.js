@@ -15,8 +15,7 @@ import LikesScreen from '../tabs/LikesScreen';
 import ProfileScreen from '../tabs/ProfileScreen';
 import SearchScreen from '../tabs/SearchScreen';
 
-const TabNavigator = createStackNavigator({
-    default: createBottomTabNavigator(
+const TabNavigator = createBottomTabNavigator(
         {
             Home: {
                 screen : HomeScreen,
@@ -37,13 +36,10 @@ const TabNavigator = createStackNavigator({
             AddMedia : {
                 screen : AddMediaScreen,
                 navigationOptions: ({navigation}) => ({
-                    tabBarIcon:({tintColor})=>(
-                        <Icon name='ios-add-circle-outline' style={{color:tintColor}}/>
+                    tabBarIcon: ({tintColor}) => (
+                            <Icon name='ios-add-circle-outline' style={{color:tintColor}} />
                     ),
-                }, {
-                    tabBarOnPress: ({navigation}) => {
-                        navigation.navigate('tabToOpenAsModal');
-                    }
+                    tabBarVisible: false
                 })
             },
             Likes : {
@@ -63,12 +59,7 @@ const TabNavigator = createStackNavigator({
                 })
             }
         }
-    ),
-    tabToOpenAsModal: { screen: AddMediaScreen }
-}, {
-    mode: 'modal',
-    headerMode: 'none'
-})
+    )
 
 
 const BottomContainer = createAppContainer(TabNavigator);

@@ -65,16 +65,13 @@ const HomeStack = createStackNavigator(
         },
         Camera:{
             screen: CameraScreen,
-            navigationOptions:({navigation}) => ({
+            navigationOptions:({naigation}) => ({
                 headerShown:false,
 
-                
+
             }),
         }
-    },
-    {
-        initialRouteName:'Home'
-    },
+    }
 );
 
 HomeStack.navigationOptions = ({ navigation }) => {
@@ -88,7 +85,7 @@ HomeStack.navigationOptions = ({ navigation }) => {
         }
       });
     }
-  
+
     return {
       tabBarVisible
     };
