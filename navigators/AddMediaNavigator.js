@@ -1,11 +1,17 @@
+import React from 'react';
+import { Button, View, Text } from 'react-native';
 import {createAppContainer} from "react-navigation";
-import {createStackNavigator} from "react-navigation-stack";
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 import CameraScreen from "./CameraScreen";
+import LibraryScreen from '../Components/AddMedia/LibraryScreen';
+import VideoScreen from '../Components/AddMedia/VideoScreen';
 
-const AddMediaNavigator = createStackNavigator({
-    Library: {screen: LibraryScreen},
-    Camera: {screen: CameraScreen},
-    Video: {screen: VideoScreen}
-});
+const AddMediaNavigator = createBottomTabNavigator({
+    Library: { screen: LibraryScreen },
+    Camera: { screen: CameraScreen },
+    Video: { screen: VideoScreen }
+})
+
+
 
 export default createAppContainer(AddMediaNavigator);

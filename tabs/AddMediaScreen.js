@@ -9,9 +9,9 @@ class AddMediaScreen extends React.Component {
     render() {
         return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Container>
-                <AddMediaNavigator/>
-            </Container>
+
+            <AddMediaNavigator/>
+
         </View>
         );
   }
