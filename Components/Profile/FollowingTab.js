@@ -12,7 +12,6 @@ import {ScrollView} from 'react-native';
 import SearchBar from '../SearchBar';
 import FollowItem from './FollowItem';
 
-
 export default class FollowingTab extends React.Component {
   static navigationOptions = {
     title: '팔로잉',

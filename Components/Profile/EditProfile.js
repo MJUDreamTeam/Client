@@ -12,29 +12,31 @@ import {
   Title,
   Text,
 } from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform, StatusBar} from 'react-native';
 import EditText from './EditText';
 
 export default class EditProfile extends React.Component {
   render() {
     return (
-      <Container style={{flex: 1, backgroundColor: 'white'}}>
-        <Header>
-          <Left style={{flex: 2}}>
+      <Container style={styles.container}>
+        <Header style={{backgroundColor: 'white'}}>
+          <Left style={{flex: 1}}>
             <Button
+              transparent
               onPress={() => this.props.navigation.goBack()}
-              style={{width: '90%'}}>
-              <Text>취소</Text>
+              style={{flex: 1}}>
+              <Text style={{color: '#000'}}>취소</Text>
             </Button>
           </Left>
-          <Body style={{flex: 2}}>
-            <Title>프로필 수정</Title>
+          <Body style={{flex: 1, alignItems: 'center'}}>
+            <Title style={{color: '#000'}}>프로필 수정</Title>
           </Body>
-          <Right style={{flex: 1.5}}>
+          <Right style={{flex: 1}}>
             <Button
+              transparent
               onPress={() => this.props.navigation.goBack()}
-              style={{width: '90%', flexDirection: 'row-reverse'}}>
-              <Text>확인</Text>
+              style={{width: '60%', flexDirection: 'row-reverse'}}>
+              <Text style={{color: '#000'}}>확인</Text>
             </Button>
           </Right>
         </Header>
@@ -135,6 +137,15 @@ export default class EditProfile extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    ...Platform.select({
+      android: {
+        marginTop: StatusBar.currentHeight,
+      },
+    }),
+  },
   profileImage: {
     flex: 1,
     alignItems: 'center',

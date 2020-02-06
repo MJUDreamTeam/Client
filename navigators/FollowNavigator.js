@@ -1,6 +1,6 @@
 import {createAppContainer} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
-import React from 'react';
+import {Platform} from 'react-native';
 
 import FollowerTab from '../Components/Profile/FollowerTab';
 import FollowingTab from '../Components/Profile/FollowingTab';
