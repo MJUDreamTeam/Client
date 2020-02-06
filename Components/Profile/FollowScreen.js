@@ -29,7 +29,18 @@ export default class FollowScreen extends React.Component {
           <Right />
         </Header>
         <Content>
-          <FollowNavigator />
+          <FollowNavigator
+            screenProps={{
+              followerData: this.props.navigation.getParam(
+                'followerData',
+                'ccc',
+              ),
+              followingData: this.props.navigation.getParam(
+                'followingData',
+                'www',
+              ),
+            }}
+          />
         </Content>
       </Container>
     );
