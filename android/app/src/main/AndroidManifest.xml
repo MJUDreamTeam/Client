@@ -3,6 +3,16 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- permission for camera -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!-- permission for external storage, 파일 저장에 사용 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    
+    <!-- permission for RECORD AUDIO 오디오 녹음 사용 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"

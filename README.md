@@ -9,7 +9,7 @@
 	* Native-base
 	* react native vector icons
 
-다음과 같은 모듈들의 ** 공식문서** 
+다음과 같은 모듈들의 ** 공식문서 ** 
 반드시 읽어서 사용할 것,
 
 React Navigator 같은 경우는 버전의 호환이 매우 중요
