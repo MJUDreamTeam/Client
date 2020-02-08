@@ -1,6 +1,6 @@
 import React from 'react';
 import {Thumbnail, Body} from 'native-base';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 class StoryHeaderComponent extends React.Component {
   constructor(props) {
@@ -11,7 +11,9 @@ class StoryHeaderComponent extends React.Component {
     const {user} = this.props;
 
     return (
-      <View style={{flex: 1, width: 55, margin: 5}}>
+      <TouchableOpacity
+        style={{flex: 1, width: 57, margin: 5}}
+        onPress={() => alert('스토리클릭')}>
         <Thumbnail
           style={{borderColor: 'pink', borderWidth: 2}}
           // source={{uri: user.image}} />
@@ -25,7 +27,7 @@ class StoryHeaderComponent extends React.Component {
             {user.name}
           </Text>
         </Body>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

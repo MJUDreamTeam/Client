@@ -7,7 +7,6 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
-  Image,
 } from 'react-native';
 import {
   Header,
@@ -32,36 +31,100 @@ import EditProfile from '../Components/Profile/EditProfile';
 import FollowScreen from '../Components/Profile/FollowScreen';
 //스토리 드롭다운 뷰
 import Accordion from '@dooboo-ui/native-accordion';
-import StoryHeaderList from '../Components/Story/StoryHeaderList';
+import StoryHeaderComponent from '../Components/Story/StoryHeaderComponent';
+import AddStoryComponent from '../Components/Story/AddStoryComponent';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const following = [
-  {key: 'https://rdd9223.github.io/assets/images/profile.jpg', id: '1'},
-  {key: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4', id: '2'},
-  {key: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4', id: '3'},
-  {key: 'https://rdd9223.github.io/assets/images/profile.jpg', id: '4'},
-  {key: 'https://avatars2.githubusercontent.com/u/55945829?s=64&v=4', id: '5'},
-  {key: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4', id: '7'},
-  {key: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4', id: '8'},
+  {
+    profileImage: 'https://rdd9223.github.io/assets/images/profile.jpg',
+    id: '1',
+  },
+  {
+    profileImage: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4',
+    id: '2',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4',
+    id: '3',
+  },
+  {
+    profileImage: 'https://rdd9223.github.io/assets/images/profile.jpg',
+    id: '4',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/55945829?s=64&v=4',
+    id: '5',
+  },
+  {
+    profileImage: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4',
+    id: '6',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4',
+    id: '7',
+  },
 ];
 const follower = [
-  {key: 'https://rdd9223.github.io/assets/images/profile.jpg', id: '1'},
-  {key: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4', id: '2'},
-  {key: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4', id: '3'},
-  {key: 'https://rdd9223.github.io/assets/images/profile.jpg', id: '4'},
-  {key: 'https://avatars2.githubusercontent.com/u/55945829?s=64&v=4', id: '5'},
-  {key: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4', id: '7'},
-  {key: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4', id: '8'},
-  {key: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4', id: '9'},
-  {key: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4', id: '10'},
+  {
+    profileImage: 'https://rdd9223.github.io/assets/images/profile.jpg',
+    id: '1',
+  },
+  {
+    profileImage: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4',
+    id: '2',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4',
+    id: '3',
+  },
+  {
+    profileImage: 'https://rdd9223.github.io/assets/images/profile.jpg',
+    id: '4',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/55945829?s=64&v=4',
+    id: '5',
+  },
+  {
+    profileImage: 'https://avatars0.githubusercontent.com/u/51014797?s=64&v=4',
+    id: '6',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4',
+    id: '7',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4',
+    id: '8',
+  },
+  {
+    profileImage: 'https://avatars2.githubusercontent.com/u/52193680?s=64&v=4',
+    id: '9',
+  },
 ];
-const storyHighlight = {
-  contents: [
-    {
-      title: '스토리 하이라이트',
-      body: '좋아하는 스토리를 프로필에 보관해보세요',
-    },
-  ],
-};
+const storyHighlight = [
+  {
+    name: 'qqqq',
+    content: 'con',
+    key: '1',
+  },
+  {
+    name: 'wwww',
+    content: 'con',
+    key: '2',
+  },
+  {
+    name: 'eeee',
+    content: 'con',
+    key: '3',
+  },
+  {
+    name: 'rrrr',
+    content: 'con',
+    key: '4',
+  },
+];
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -108,11 +171,12 @@ class ProfileScreen extends React.Component {
                 />
               </TouchableOpacity>
             </View>
-            <View style={{flex: 2, marginTop: 10}}>
+            <View style={{flex: 2, marginTop: 10, justifyContent: 'center'}}>
               <View
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'space-around',
+                  alignItems: 'center',
                 }}>
                 <View style={{alignItems: 'center'}}>
                   <Text>0</Text>
@@ -127,7 +191,7 @@ class ProfileScreen extends React.Component {
                       })
                     }>
                     <View style={{alignItems: 'center'}}>
-                      <Text>{follower.length + 1}</Text>
+                      <Text>{follower.length}</Text>
                       <Text style={{fontSize: 10, color: 'gray'}}>팔로워</Text>
                     </View>
                   </TouchableOpacity>
@@ -141,7 +205,7 @@ class ProfileScreen extends React.Component {
                       })
                     }>
                     <View style={{alignItems: 'center'}}>
-                      <Text>{following.length + 1}</Text>
+                      <Text>{following.length}</Text>
                       <Text style={{fontSize: 10, color: 'gray'}}>팔로잉</Text>
                     </View>
                   </TouchableOpacity>
@@ -200,15 +264,24 @@ class ProfileScreen extends React.Component {
                   </Text>
                 </View>
               }>
-              <Text
-                style={{
-                  fontSize: 13,
-                }}>
-                좋아하는 스토리를 프로필에 보관해보세요
-              </Text>
+              <View>
+                <Text
+                  style={{
+                    fontSize: 13,
+                    marginBottom: '2%',
+                  }}>
+                  좋아하는 스토리를 프로필에 보관해보세요
+                </Text>
+              </View>
+              <ScrollView horizontal>
+                <AddStoryComponent />
+                {storyHighlight.map(story => {
+                  return <StoryHeaderComponent key={story.key} user={story} />;
+                })}
+              </ScrollView>
             </Accordion>
-            <PostsNavigator />
           </View>
+          <PostsNavigator />
         </Content>
       </Container>
     );
@@ -245,7 +318,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    //backgroundColor: 'red',
   },
   title: {
     alignSelf: 'center',

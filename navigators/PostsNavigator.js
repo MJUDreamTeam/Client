@@ -21,7 +21,7 @@ const PostsNavigator = createMaterialTopTabNavigator(
         }),
       },
       activeTintColor: '#0b72ff',
-      inactiveTintColor: '#d1cece',
+      inactiveTintColor: '#fff',
       showLabel: false,
       showIcon: true,
     },

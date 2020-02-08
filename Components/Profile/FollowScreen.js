@@ -17,14 +17,14 @@ export default class FollowScreen extends React.Component {
   render() {
     return (
       <Container style={{flex: 1, backgroundColor: 'white'}}>
-        <Header>
+        <Header style={{backgroundColor:'white'}}>
           <Left style={{flex: 2}}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
               <Icon name={'ios-arrow-back'} size={20} />
             </TouchableOpacity>
           </Left>
           <Body style={{flex: 2}}>
-            <Title>User Id</Title>
+            <Title style={{color:'black'}}>User Id</Title>
           </Body>
           <Right />
         </Header>
