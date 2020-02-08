@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   Container,
@@ -8,23 +9,22 @@ import {
   Right,
   Title,
   Icon,
-  Text,
 } from 'native-base';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import FollowNavigator from '../../navigators/FollowNavigator';
 
 export default class FollowScreen extends React.Component {
   render() {
     return (
       <Container style={{flex: 1, backgroundColor: 'white'}}>
-        <Header style={{backgroundColor:'white'}}>
+        <Header style={{backgroundColor: 'white'}}>
           <Left style={{flex: 2}}>
             <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
               <Icon name={'ios-arrow-back'} size={20} />
             </TouchableOpacity>
           </Left>
           <Body style={{flex: 2}}>
-            <Title style={{color:'black'}}>User Id</Title>
+            <Title style={{color: 'black'}}>User Id</Title>
           </Body>
           <Right />
         </Header>
@@ -46,7 +46,3 @@ export default class FollowScreen extends React.Component {
     );
   }
 }
-
-// const styles = StyleSheet.create({
-
-// });

@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   View,
@@ -16,28 +18,33 @@ import {
   Input,
   Label,
 } from 'native-base';
-import {StyleSheet, Platform, StatusBar} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
 export default class EditProfile extends React.Component {
   render() {
+    const userData = this.props.navigation.getParam('userData', 'ccc');
+
     return (
       <Container style={styles.container}>
         <Header style={{backgroundColor: 'white'}}>
           <Left style={{flex: 1}}>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
               <Text style={{color: '#000'}}>취소</Text>
-            </Button>
+            </TouchableOpacity>
           </Left>
           <Body style={{flex: 1, alignItems: 'center'}}>
             <Title style={{color: '#000'}}>프로필 편집</Title>
           </Body>
           <Right style={{flex: 1}}>
-            <Button
-              transparent
+            <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
-              style={{width: '60%', flexDirection: 'row-reverse'}}>
-              <Text style={{color: '#000'}}>확인</Text>
-            </Button>
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                flexDirection: 'row-reverse',
+              }}>
+              <Text style={{color: '#4169e1', fontWeight: 'bold'}}>완료</Text>
+            </TouchableOpacity>
           </Right>
         </Header>
         <Content>
@@ -45,8 +52,6 @@ export default class EditProfile extends React.Component {
             <Thumbnail
               large
               style={{
-                borderColor: 'pink',
-                borderWidth: 2,
                 marginBottom: 8,
               }}
               source={{
@@ -61,19 +66,28 @@ export default class EditProfile extends React.Component {
           <Form>
             <Item fixedLabel>
               <Label style={styles.text}>이름</Label>
-              <Input placeholder="이민환" placeholderTextColor="black" />
+              <Input placeholder={userData.name} placeholderTextColor="black" />
             </Item>
             <Item fixedLabel>
               <Label style={styles.text}>사용자 이름</Label>
-              <Input />
+              <Input
+                placeholder={userData.userId}
+                placeholderTextColor="black"
+              />
             </Item>
             <Item fixedLabel>
               <Label style={styles.text}>웹사이트</Label>
-              <Input />
+              <Input
+                placeholder={userData.webSite ? userData.webSite : '웹사이트'}
+                placeholderTextColor={userData.webSite ? 'black' : 'gray'}
+              />
             </Item>
             <Item fixedLabel last>
               <Label style={styles.text}>소개</Label>
-              <Input />
+              <Input
+                placeholder={userData.intro ? userData.intro : '소개'}
+                placeholderTextColor={userData.intro ? 'black' : 'gray'}
+              />
             </Item>
           </Form>
           <Form>
@@ -87,15 +101,24 @@ export default class EditProfile extends React.Component {
             <Label style={{padding: 10, fontWeight: '400'}}>개인 정보</Label>
             <Item fixedLabel>
               <Label style={styles.text}>이메일</Label>
-              <Input />
+              <Input
+                placeholder={userData.email ? userData.email : '이메일'}
+                placeholderTextColor={userData.email ? 'black' : 'gray'}
+              />
             </Item>
             <Item fixedLabel>
               <Label style={styles.text}>전화</Label>
-              <Input />
+              <Input
+                placeholder={userData.phoneNum ? userData.phoneNum : '전화번호'}
+                placeholderTextColor={userData.phoneNum ? 'black' : 'gray'}
+              />
             </Item>
             <Item fixedLabel last>
               <Label style={styles.text}>성별</Label>
-              <Input />
+              <Input
+                placeholder={userData.gender ? userData.gender : '성별'}
+                placeholderTextColor={userData.gender ? 'black' : 'gray'}
+              />
             </Item>
           </Form>
         </Content>
@@ -108,11 +131,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    ...Platform.select({
-      android: {
-        marginTop: StatusBar.currentHeight,
-      },
-    }),
   },
   profileImage: {
     flex: 1,

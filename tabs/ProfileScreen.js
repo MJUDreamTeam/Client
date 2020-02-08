@@ -36,6 +36,16 @@ import StoryHeaderComponent from '../Components/Story/StoryHeaderComponent';
 import AddStoryComponent from '../Components/Story/AddStoryComponent';
 import {ScrollView} from 'react-native-gesture-handler';
 
+var userData = {
+  name: '이민환',
+  userId: 'hvv_an2',
+  webSite: '',
+  intro: '',
+  email: 'eminhwan@naver.com',
+  phoneNum: '010-2597-5747',
+  gender: 'male',
+};
+
 const following = [
   {
     profileImage: 'https://rdd9223.github.io/assets/images/profile.jpg',
@@ -127,7 +137,7 @@ const storyHighlight = [
   },
 ];
 
-var BUTTONS = [
+const BUTTONS = [
   {text: '설정', icon: 'ios-settings'},
   {text: '보관', icon: 'ios-download'},
   {text: '내 활동', icon: 'md-time'},
@@ -137,8 +147,8 @@ var BUTTONS = [
   {text: '사람 찾아보기', icon: 'md-person-add'},
   {text: 'Facebook 열기', icon: 'logo-facebook'},
 ];
-var DESTRUCTIVE_INDEX = 3;
-var CANCEL_INDEX = 4;
+const DESTRUCTIVE_INDEX = 3;
+const CANCEL_INDEX = 4;
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -153,7 +163,7 @@ class ProfileScreen extends React.Component {
         <Header style={styles.header}>
           <Left style={{flex: 1}} />
           <Body style={styles.body}>
-            <Title style={styles.title}>User Id</Title>
+            <Title style={styles.title}>{userData.userId}</Title>
           </Body>
           <Right style={{flex: 1}}>
             <TouchableOpacity
@@ -240,7 +250,9 @@ class ProfileScreen extends React.Component {
             </View>
           </View>
           <View style={{paddingHorizontal: 30, paddingVertical: 10}}>
-            <Text style={{fontWeight: 'bold'}}>이민환</Text>
+            <Text style={{fontWeight: 'bold'}}>
+              {userData.intro ? userData.intro : userData.name}
+            </Text>
           </View>
           <Button
             light
@@ -249,7 +261,11 @@ class ProfileScreen extends React.Component {
               marginHorizontal: 30,
               height: 30,
             }}
-            onPress={() => this.props.navigation.navigate('Edit')}>
+            onPress={() =>
+              this.props.navigation.navigate('Edit', {
+                userData: userData,
+              })
+            }>
             <Text>프로필 수정</Text>
           </Button>
           <View style={{alignSelf: 'stretch', flex: 1}}>
