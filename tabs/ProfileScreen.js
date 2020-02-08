@@ -19,6 +19,7 @@ import {
   Right,
   Left,
   Title,
+  ActionSheet,
 } from 'native-base';
 //게시물 네비게이터
 import PostsNavigator from '../navigators/PostsNavigator';
@@ -126,6 +127,19 @@ const storyHighlight = [
   },
 ];
 
+var BUTTONS = [
+  {text: '설정', icon: 'ios-settings'},
+  {text: '보관', icon: 'ios-download'},
+  {text: '내 활동', icon: 'md-time'},
+  {text: '네임 태그', icon: 'md-qr-scanner'},
+  {text: '저장됨', icon: 'md-bookmark'},
+  {text: '친한 친구', icon: 'ios-list'},
+  {text: '사람 찾아보기', icon: 'md-person-add'},
+  {text: 'Facebook 열기', icon: 'logo-facebook'},
+];
+var DESTRUCTIVE_INDEX = 3;
+var CANCEL_INDEX = 4;
+
 class ProfileScreen extends React.Component {
   static navigationOptions = {
     tabBarIcon: ({tintColor}) => (
@@ -142,7 +156,19 @@ class ProfileScreen extends React.Component {
             <Title style={styles.title}>User Id</Title>
           </Body>
           <Right style={{flex: 1}}>
-            <TouchableOpacity onPress={() => alert('메뉴')}>
+            <TouchableOpacity
+              onPress={() =>
+                ActionSheet.show(
+                  {
+                    options: BUTTONS,
+                    cancelButtonIndex: CANCEL_INDEX,
+                    destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                  },
+                  buttonIndex => {
+                    alert(buttonIndex);
+                  },
+                )
+              }>
               <Icon name={'menu'} size={20} />
             </TouchableOpacity>
           </Right>
@@ -307,11 +333,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    ...Platform.select({
-      android: {
-        marginTop: StatusBar.currentHeight,
-      },
-    }),
   },
   header: {
     backgroundColor: 'white',
