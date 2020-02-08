@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, View, Text } from 'react-native';
+import {Button, View, Text, Platform} from 'react-native';
 import {createAppContainer} from "react-navigation";
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import CameraScreen from "./CameraScreen";
@@ -10,6 +10,13 @@ const AddMediaNavigator = createBottomTabNavigator({
     Library: { screen: LibraryScreen },
     Camera: { screen: CameraScreen },
     Video: { screen: VideoScreen }
+}, {
+    animationEnabled: true,
+    swipeEnabled: true,
+    tabBarOptions: {
+        showLabel: true,
+        showIcon: false,
+    }
 })
 
 

@@ -66,7 +66,7 @@ class CameraScreen extends PureComponent {
             } catch (err) {
               console.warn(err);
             }
-            
+
             CameraRoll.saveToCameraRoll(data.uri);
 
           });
