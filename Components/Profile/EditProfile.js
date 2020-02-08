@@ -80,6 +80,7 @@ export default class EditProfile extends React.Component {
               <Input
                 placeholder={userData.webSite ? userData.webSite : '웹사이트'}
                 placeholderTextColor={userData.webSite ? 'black' : 'gray'}
+                onChangeText={text => (userData.webSite = text)}
               />
             </Item>
             <Item fixedLabel last>
