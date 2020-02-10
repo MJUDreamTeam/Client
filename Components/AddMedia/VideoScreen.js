@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import Video from 'react-native-video';
 import {Container} from 'native-base';
 
 class VideoScreen extends React.Component {
@@ -12,5 +13,6 @@ class VideoScreen extends React.Component {
         );
     }
 }
+
 
 export default VideoScreen;

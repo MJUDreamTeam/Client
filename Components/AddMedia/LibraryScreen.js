@@ -1,5 +1,15 @@
 import React from 'react';
-import {PermissionsAndroid, Button, TouchableHighlight, ScrollView, View, Image, StyleSheet} from 'react-native';
+import {
+    PermissionsAndroid,
+    Button,
+    TouchableHighlight,
+    Dimensions,
+    ScrollView,
+    View,
+    Image,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
 
 
@@ -8,7 +18,7 @@ class LibraryScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { photos: [] }
+        this.state = { photos: [], pickPhoto: null }
     }
 
     _getPermissionReadExternalStorage = async() => {
@@ -35,6 +45,10 @@ class LibraryScreen extends React.Component {
         }
     }
 
+    _updatePickPhoto = (p) => {
+        this.setState( {pickPhoto: p.node.image.uri})
+    }
+
     componentDidMount() {
         this._getPermissionReadExternalStorage()
             .then(r => {
@@ -43,7 +57,7 @@ class LibraryScreen extends React.Component {
                 assetType: 'All'
                 })
                 .then(r => {
-                    this.setState({ photos: r.edges });
+                    this.setState({ photos: r.edges, pickPhoto: r.edges[0].node.image.uri });
                 })
                 .catch((err) => {
                     //Error Loading Images
@@ -57,13 +71,20 @@ class LibraryScreen extends React.Component {
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <ScrollView style={styles.container}>
                     <View style={styles.imageGrid}>
+                        <Image
+                            style={styles.bigImage}
+                            source={{ uri: this.state.pickPhoto }}/>
+                    </View>
+                    <View style={styles.imageGrid}>
                         {this.state.photos.map((p, i) => {
                             return (
-                                <Image
-                                    key={i}
-                                    style={styles.image}
-                                    source={{ uri: p.node.image.uri }}
-                                />
+                                <TouchableOpacity onPress={() => this._updatePickPhoto(p)}>
+                                    <Image
+                                        key={i}
+                                        style={styles.image}
+                                        source={{ uri: p.node.image.uri }}
+                                    />
+                                </TouchableOpacity>
                             );
                         })}
                     </View>
@@ -81,14 +102,25 @@ const styles = StyleSheet.create({
     imageGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         flex: 1,
+        // alignItems: 'flex-start'
+    },
+    bigImage: {
+        width: Dimensions.get('window').width,
+        height: 100,
+        borderWidth: 1,
+        borderColor: 'lightgray',
+        resizeMode: 'cover',
+        aspectRatio: 1  // 정사각형을 구현해주는 마법의 스타일
     },
     image: {
-        // flex: 1,
-        width: '30%',
-        height: 100,
-        margin: 1,
+        width: Dimensions.get('window').width * 0.25,
+        // height: 100,
+        borderWidth: 1,
+        borderColor: "lightgray",
+        resizeMode: 'contain',
+        aspectRatio: 1,
     },
 });
 
