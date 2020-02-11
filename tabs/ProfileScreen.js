@@ -1,13 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Platform,
-  StatusBar,
-  StyleSheet,
-} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {
   Header,
   Icon,
@@ -35,6 +28,7 @@ import Accordion from '@dooboo-ui/native-accordion';
 import StoryHeaderComponent from '../Components/Story/StoryHeaderComponent';
 import AddStoryComponent from '../Components/Story/AddStoryComponent';
 import {ScrollView} from 'react-native-gesture-handler';
+import StoryScreen from '../Components/Story/StoryScreen';
 
 var userData = {
   name: '이민환',
@@ -44,6 +38,7 @@ var userData = {
   email: 'eminhwan@naver.com',
   phoneNum: '010-2597-5747',
   gender: 'male',
+  isStory: true,
 };
 
 const following = [
@@ -151,11 +146,26 @@ const DESTRUCTIVE_INDEX = 3;
 const CANCEL_INDEX = 4;
 
 class ProfileScreen extends React.Component {
+  constructor(props){
+    super(props);
+    this.goStory = this.goStory.bind(this);
+  }
   static navigationOptions = {
     tabBarIcon: ({tintColor}) => (
       <Icon name="contact" style={{color: tintColor}} />
     ),
     headerShown: false,
+  };
+  state = {Data: userData};
+  onChange = data => {
+    this.setState(data);
+  };
+  goStory = () => {
+    if (this.state.Data.isStory) {
+      this.props.navigation.navigate('Story');
+    } else {
+      alert('ssss');
+    }
   };
   render() {
     return (
@@ -163,7 +173,7 @@ class ProfileScreen extends React.Component {
         <Header style={styles.header}>
           <Left style={{flex: 1}} />
           <Body style={styles.body}>
-            <Title style={styles.title}>{userData.userId}</Title>
+            <Title style={styles.title}>{this.state.Data.userId}</Title>
           </Body>
           <Right style={{flex: 1}}>
             <TouchableOpacity
@@ -191,8 +201,7 @@ class ProfileScreen extends React.Component {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}>
-              <TouchableOpacity
-                onPress={() => alert('프로필 사진 클릭', 'Image tapped')}>
+              <TouchableOpacity onPress={() => this.goStory()}>
                 <Thumbnail
                   large
                   style={{
@@ -251,7 +260,9 @@ class ProfileScreen extends React.Component {
           </View>
           <View style={{paddingHorizontal: 30, paddingVertical: 10}}>
             <Text style={{fontWeight: 'bold'}}>
-              {userData.intro ? userData.intro : userData.name}
+              {this.state.Data.intro
+                ? this.state.Data.intro
+                : this.state.Data.name}
             </Text>
           </View>
           <Button
@@ -263,7 +274,8 @@ class ProfileScreen extends React.Component {
             }}
             onPress={() =>
               this.props.navigation.navigate('Edit', {
-                userData: userData,
+                onChange: this.onChange,
+                userData: this.state.Data,
               })
             }>
             <Text>프로필 수정</Text>
@@ -334,6 +346,7 @@ const AppNavigator = createStackNavigator(
     Home: ProfileScreen,
     Edit: EditProfile,
     Follow: FollowScreen,
+    Story: StoryScreen,
   },
   {
     initialRouteName: 'Home',

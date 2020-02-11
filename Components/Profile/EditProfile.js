@@ -19,11 +19,23 @@ import {
   Label,
 } from 'native-base';
 import {StyleSheet, TouchableOpacity} from 'react-native';
+import update from 'react-addons-update';
 
 export default class EditProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {Data: this.props.navigation.getParam('userData', 'ccc')};
+    console.log('수정페이지');
+    console.log(this.state.Data);
+  }
+  goBack() {
+    const {navigation} = this.props;
+    navigation.state.params.onChange({
+      Data: this.state.Data,
+    });
+    navigation.goBack();
+  }
   render() {
-    const userData = this.props.navigation.getParam('userData', 'ccc');
-
     return (
       <Container style={styles.container}>
         <Header style={{backgroundColor: 'white'}}>
@@ -37,7 +49,7 @@ export default class EditProfile extends React.Component {
           </Body>
           <Right style={{flex: 1}}>
             <TouchableOpacity
-              onPress={() => this.props.navigation.goBack()}
+              onPress={() => this.goBack()}
               style={{
                 flex: 1,
                 alignItems: 'center',
@@ -66,28 +78,56 @@ export default class EditProfile extends React.Component {
           <Form>
             <Item fixedLabel>
               <Label style={styles.text}>이름</Label>
-              <Input placeholder={userData.name} placeholderTextColor="black" />
+              <Input
+                placeholder={this.state.Data.name}
+                placeholderTextColor="black"
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {name: {$set: text}}),
+                  })
+                }
+              />
             </Item>
             <Item fixedLabel>
               <Label style={styles.text}>사용자 이름</Label>
               <Input
-                placeholder={userData.userId}
+                placeholder={this.state.Data.userId}
                 placeholderTextColor="black"
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {userId: {$set: text}}),
+                  })
+                }
               />
             </Item>
             <Item fixedLabel>
               <Label style={styles.text}>웹사이트</Label>
               <Input
-                placeholder={userData.webSite ? userData.webSite : '웹사이트'}
-                placeholderTextColor={userData.webSite ? 'black' : 'gray'}
-                onChangeText={text => (userData.webSite = text)}
+                placeholder={
+                  this.state.Data.webSite ? this.state.Data.webSite : '웹사이트'
+                }
+                placeholderTextColor={
+                  this.state.Data.webSite ? 'black' : 'gray'
+                }
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {webSite: {$set: text}}),
+                  })
+                }
               />
             </Item>
             <Item fixedLabel last>
               <Label style={styles.text}>소개</Label>
               <Input
-                placeholder={userData.intro ? userData.intro : '소개'}
-                placeholderTextColor={userData.intro ? 'black' : 'gray'}
+                placeholder={
+                  this.state.Data.intro ? this.state.Data.intro : '소개'
+                }
+                placeholderTextColor={this.state.Data.intro ? 'black' : 'gray'}
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {intro: {$set: text}}),
+                  })
+                }
               />
             </Item>
           </Form>
@@ -103,22 +143,47 @@ export default class EditProfile extends React.Component {
             <Item fixedLabel>
               <Label style={styles.text}>이메일</Label>
               <Input
-                placeholder={userData.email ? userData.email : '이메일'}
-                placeholderTextColor={userData.email ? 'black' : 'gray'}
+                placeholder={
+                  this.state.Data.email ? this.state.Data.email : '이메일'
+                }
+                placeholderTextColor={this.state.Data.email ? 'black' : 'gray'}
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {email: {$set: text}}),
+                  })
+                }
               />
             </Item>
             <Item fixedLabel>
               <Label style={styles.text}>전화</Label>
               <Input
-                placeholder={userData.phoneNum ? userData.phoneNum : '전화번호'}
-                placeholderTextColor={userData.phoneNum ? 'black' : 'gray'}
+                placeholder={
+                  this.state.Data.phoneNum
+                    ? this.state.Data.phoneNum
+                    : '전화번호'
+                }
+                placeholderTextColor={
+                  this.state.Data.phoneNum ? 'black' : 'gray'
+                }
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {phoneNum: {$set: text}}),
+                  })
+                }
               />
             </Item>
             <Item fixedLabel last>
               <Label style={styles.text}>성별</Label>
               <Input
-                placeholder={userData.gender ? userData.gender : '성별'}
-                placeholderTextColor={userData.gender ? 'black' : 'gray'}
+                placeholder={
+                  this.state.Data.gender ? this.state.Data.gender : '성별'
+                }
+                placeholderTextColor={this.state.Data.gender ? 'black' : 'gray'}
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {gender: {$set: text}}),
+                  })
+                }
               />
             </Item>
           </Form>
