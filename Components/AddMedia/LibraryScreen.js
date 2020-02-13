@@ -1,8 +1,6 @@
 import React from 'react';
 import {
     PermissionsAndroid,
-    Button,
-    TouchableHighlight,
     Dimensions,
     ScrollView,
     View,
@@ -11,7 +9,9 @@ import {
     TouchableOpacity
 } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
-
+import {Container} from "native-base";
+import AddMediaHeader from "./AddMediaHeader";
+import {NavigationContainer} from "react-navigation";
 
 
 class LibraryScreen extends React.Component {
@@ -68,7 +68,8 @@ class LibraryScreen extends React.Component {
 
     render() {
         return (
-            <View style={{flex: 1, backgroundColor: 'white'}}>
+            <Container style={{flex: 1, backgroundColor: 'white'}}>
+                <AddMediaHeader style={{ flex: 1 }}/>
                 <ScrollView style={styles.container}>
                     <View style={styles.imageGrid}>
                         <Image
@@ -89,7 +90,7 @@ class LibraryScreen extends React.Component {
                         })}
                     </View>
                 </ScrollView>
-            </View>
+            </Container>
         );
     }
 }
@@ -100,10 +101,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     imageGrid: {
+        flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
-        flex: 1,
         // alignItems: 'flex-start'
     },
     bigImage: {

@@ -65,7 +65,7 @@ const HomeStack = createStackNavigator(
         },
         Camera:{
             screen: CameraScreen,
-            navigationOptions:({naigation}) => ({
+            navigationOptions:({navigation}) => ({
                 headerShown:false,
 
 
