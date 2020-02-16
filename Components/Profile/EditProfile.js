@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   View,
@@ -11,31 +13,50 @@ import {
   Thumbnail,
   Title,
   Text,
+  Form,
+  Item,
+  Input,
+  Label,
 } from 'native-base';
-import {StyleSheet} from 'react-native';
-import EditText from './EditText';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import update from 'react-addons-update';
 
 export default class EditProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {Data: this.props.navigation.getParam('userData', 'ccc')};
+    console.log('수정페이지');
+    console.log(this.state.Data);
+  }
+  goBack() {
+    const {navigation} = this.props;
+    navigation.state.params.onChange({
+      Data: this.state.Data,
+    });
+    navigation.goBack();
+  }
   render() {
     return (
-      <Container style={{flex: 1, backgroundColor: 'white'}}>
-        <Header>
-          <Left style={{flex: 2}}>
-            <Button
-              onPress={() => this.props.navigation.goBack()}
-              style={{width: '90%'}}>
-              <Text>취소</Text>
-            </Button>
+      <Container style={styles.container}>
+        <Header style={{backgroundColor: 'white'}}>
+          <Left style={{flex: 1}}>
+            <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+              <Text style={{color: '#000'}}>취소</Text>
+            </TouchableOpacity>
           </Left>
-          <Body style={{flex: 2}}>
-            <Title>프로필 수정</Title>
+          <Body style={{flex: 1, alignItems: 'center'}}>
+            <Title style={{color: '#000'}}>프로필 편집</Title>
           </Body>
-          <Right style={{flex: 1.5}}>
-            <Button
-              onPress={() => this.props.navigation.goBack()}
-              style={{width: '90%', flexDirection: 'row-reverse'}}>
-              <Text>확인</Text>
-            </Button>
+          <Right style={{flex: 1}}>
+            <TouchableOpacity
+              onPress={() => this.goBack()}
+              style={{
+                flex: 1,
+                alignItems: 'center',
+                flexDirection: 'row-reverse',
+              }}>
+              <Text style={{color: '#4169e1', fontWeight: 'bold'}}>완료</Text>
+            </TouchableOpacity>
           </Right>
         </Header>
         <Content>
@@ -43,8 +64,6 @@ export default class EditProfile extends React.Component {
             <Thumbnail
               large
               style={{
-                borderColor: 'pink',
-                borderWidth: 2,
                 marginBottom: 8,
               }}
               source={{
@@ -56,78 +75,118 @@ export default class EditProfile extends React.Component {
               <Text>프로필 사진 바꾸기</Text>
             </Button>
           </View>
-          <View style={styles.edit}>
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>이름</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>사용자 이름</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>웹사이트</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>소개</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-            <Button transparent>
-              <Text>프로페셔널 계정으로 전환</Text>
-            </Button>
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>개인 정보</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>이메일</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>전화</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-
-            <View style={styles.line}>
-              <View style={styles.titleBlock}>
-                <Text>성별</Text>
-              </View>
-              <View style={styles.editText}>
-                <EditText />
-              </View>
-            </View>
-          </View>
+          <Form>
+            <Item fixedLabel>
+              <Label style={styles.text}>이름</Label>
+              <Input
+                placeholder={this.state.Data.name}
+                placeholderTextColor="black"
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {name: {$set: text}}),
+                  })
+                }
+              />
+            </Item>
+            <Item fixedLabel>
+              <Label style={styles.text}>사용자 이름</Label>
+              <Input
+                placeholder={this.state.Data.userId}
+                placeholderTextColor="black"
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {userId: {$set: text}}),
+                  })
+                }
+              />
+            </Item>
+            <Item fixedLabel>
+              <Label style={styles.text}>웹사이트</Label>
+              <Input
+                placeholder={
+                  this.state.Data.webSite ? this.state.Data.webSite : '웹사이트'
+                }
+                placeholderTextColor={
+                  this.state.Data.webSite ? 'black' : 'gray'
+                }
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {webSite: {$set: text}}),
+                  })
+                }
+              />
+            </Item>
+            <Item fixedLabel last>
+              <Label style={styles.text}>소개</Label>
+              <Input
+                placeholder={
+                  this.state.Data.intro ? this.state.Data.intro : '소개'
+                }
+                placeholderTextColor={this.state.Data.intro ? 'black' : 'gray'}
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {intro: {$set: text}}),
+                  })
+                }
+              />
+            </Item>
+          </Form>
+          <Form>
+            <Item last>
+              <Button transparent>
+                <Text>프로페셔널 계정으로 전환</Text>
+              </Button>
+            </Item>
+          </Form>
+          <Form>
+            <Label style={{padding: 10, fontWeight: '400'}}>개인 정보</Label>
+            <Item fixedLabel>
+              <Label style={styles.text}>이메일</Label>
+              <Input
+                placeholder={
+                  this.state.Data.email ? this.state.Data.email : '이메일'
+                }
+                placeholderTextColor={this.state.Data.email ? 'black' : 'gray'}
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {email: {$set: text}}),
+                  })
+                }
+              />
+            </Item>
+            <Item fixedLabel>
+              <Label style={styles.text}>전화</Label>
+              <Input
+                placeholder={
+                  this.state.Data.phoneNum
+                    ? this.state.Data.phoneNum
+                    : '전화번호'
+                }
+                placeholderTextColor={
+                  this.state.Data.phoneNum ? 'black' : 'gray'
+                }
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {phoneNum: {$set: text}}),
+                  })
+                }
+              />
+            </Item>
+            <Item fixedLabel last>
+              <Label style={styles.text}>성별</Label>
+              <Input
+                placeholder={
+                  this.state.Data.gender ? this.state.Data.gender : '성별'
+                }
+                placeholderTextColor={this.state.Data.gender ? 'black' : 'gray'}
+                onChangeText={text =>
+                  this.setState({
+                    Data: update(this.state.Data, {gender: {$set: text}}),
+                  })
+                }
+              />
+            </Item>
+          </Form>
         </Content>
       </Container>
     );
@@ -135,26 +194,17 @@ export default class EditProfile extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   profileImage: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 12,
   },
-  edit: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 15,
-  },
-  line: {
-    height: 40,
-    flexDirection: 'row',
-  },
-  titleBlock: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  editText: {
-    flex: 2.5,
+  text: {
+    color: 'black',
   },
 });
