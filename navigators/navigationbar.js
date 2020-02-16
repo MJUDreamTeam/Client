@@ -1,13 +1,9 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import {StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { createStackNavigator } from 'react-navigation-stack';
-import {Icon,Button} from 'native-base';
+import {Icon} from 'native-base';
 
-// 상단 네비게이션 stack 화면을 위한 import
-import CameraScreen from './CameraScreen';
-import DirectMessageScreen from './DirectMessageScreen';
 // tabs폴더에 있는 tab들을 임포트
 import AddMediaScreen from '../tabs/AddMediaScreen';
 import HomeScreen from '../tabs/HomeScreen';

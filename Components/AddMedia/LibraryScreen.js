@@ -6,13 +6,14 @@ import {
     View,
     Image,
     StyleSheet,
-    TouchableOpacity
+    Button,
+    TouchableOpacity,
+    Text
 } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
-import {Container} from "native-base";
-import AddMediaHeader from "./AddMediaHeader";
-import {NavigationContainer} from "react-navigation";
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import PostScreen from "./PostScreen";
 
 class LibraryScreen extends React.Component {
 
@@ -68,8 +69,7 @@ class LibraryScreen extends React.Component {
 
     render() {
         return (
-            <Container style={{flex: 1, backgroundColor: 'white'}}>
-                <AddMediaHeader style={{ flex: 1 }}/>
+            <View style={{flex: 1, backgroundColor: 'white'}}>
                 <ScrollView style={styles.container}>
                     <View style={styles.imageGrid}>
                         <Image
@@ -90,9 +90,34 @@ class LibraryScreen extends React.Component {
                         })}
                     </View>
                 </ScrollView>
-            </Container>
+            </View>
         );
     }
+}
+
+const Stack = createStackNavigator();
+
+function LibraryNavigator({navigation}) {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="LibraryScreen"
+                    component={LibraryScreen}
+                    options={{
+                        headerTitle: '라이브러리',
+                        headerRight: () => (
+                            <Button transparent onPress={() => navigation.navigate('PostScreen')} title="info" color='#fff'/>
+                        ),
+                    }}
+                />
+                <Stack.Screen
+                    name="PostScreen"
+                    component={PostScreen}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -105,7 +130,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
-        // alignItems: 'flex-start'
     },
     bigImage: {
         width: Dimensions.get('window').width,
@@ -125,4 +149,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LibraryScreen;
+export default LibraryNavigator;
