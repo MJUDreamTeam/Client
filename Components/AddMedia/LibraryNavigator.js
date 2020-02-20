@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
     PermissionsAndroid,
     Dimensions,
@@ -8,12 +8,12 @@ import {
     StyleSheet,
     Button,
     TouchableOpacity,
-    Text
 } from 'react-native';
 import CameraRoll from "@react-native-community/cameraroll";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import PostScreen from "./PostScreen";
+// import PostScreen from "./PostScreen";
+import {Text} from "native-base";
 
 class LibraryScreen extends React.Component {
 
@@ -95,6 +95,14 @@ class LibraryScreen extends React.Component {
     }
 }
 
+function PostScreen () {
+    return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Details Screen</Text>
+        </View>
+    );
+}
+
 const Stack = createStackNavigator();
 
 function LibraryNavigator({navigation}) {
@@ -107,13 +115,16 @@ function LibraryNavigator({navigation}) {
                     options={{
                         headerTitle: '라이브러리',
                         headerRight: () => (
-                            <Button transparent onPress={() => navigation.navigate('PostScreen')} title="info" color='#fff'/>
+                            <Button onPress={() => navigation.navigate('PostScreen')} title="Next" color='#000'/>
                         ),
                     }}
                 />
                 <Stack.Screen
                     name="PostScreen"
                     component={PostScreen}
+                    options={{
+                        headerTitle: '글쓰기',
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
