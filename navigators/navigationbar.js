@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Icon} from 'native-base';
 
 // tabs폴더에 있는 tab들을 임포트
-import AddMediaScreen from '../tabs/AddMediaScreen';
+import AddMediaNavigator from "./AddMediaNavigator";
 import HomeScreen from '../tabs/HomeScreen';
 import LikesScreen from '../tabs/LikesScreen';
 import ProfileScreen from '../tabs/ProfileScreen';
@@ -30,7 +30,7 @@ const TabNavigator = createBottomTabNavigator(
             })
         },
         AddMedia: {
-            screen: AddMediaScreen,
+            screen: AddMediaNavigator,
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({tintColor}) => (
                     <Icon name='ios-add-circle-outline' style={{color: tintColor}}/>
