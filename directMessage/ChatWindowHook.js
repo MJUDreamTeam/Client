@@ -181,12 +181,6 @@ function ChatWindowNavigation() {
                 options={{
                     headerShown:false
                 }}/>
-            <Stack.Screen 
-                name = "DMCameraPreview" 
-                component ={DMCameraPreview}
-                options={{
-                    headerShown:false
-                }}/>
         </Stack.Navigator>
     );
 }
