@@ -1,12 +1,15 @@
 import {createAppContainer} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import {Platform} from 'react-native';
 
 import FollowerTab from '../Components/Profile/FollowerTab';
 import FollowingTab from '../Components/Profile/FollowingTab';
 
 const FollowNavigator = createMaterialTopTabNavigator(
   {
-    FollowerTab: {screen: FollowerTab},
+    FollowerTab: {
+      screen: FollowerTab,
+    },
     FollowingTab: {screen: FollowingTab},
   },
   {

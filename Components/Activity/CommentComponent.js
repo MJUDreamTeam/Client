@@ -1,6 +1,6 @@
 import React from 'react';
 import {Thumbnail, Container} from 'native-base';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 class CommentComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -16,19 +16,23 @@ class CommentComponent extends React.Component {
           <Thumbnail source={{uri: otherImage}} />
         </View>
         <View style={style.content}>
-          <Text>
-            <Text>
-              {activity.otherName}님이 댓글을 남겼습니다: {activity.content}
-            </Text>
+          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity onPress={() => alert('ddd')}>
+                <Text>{activity.otherName} </Text>
+              </TouchableOpacity>
+              <Text>님이 댓글을 남겼습니다:</Text>
+            </View>
+            <Text> {activity.content} </Text>
             <Text style={{color: '#595959', fontSize: 12}}>
               {activity.date}주
             </Text>
-          </Text>
+          </View>
         </View>
         <View style={style.thumbnail}>
           <Thumbnail square source={{uri: myPost}} />
         </View>
-      </View>
+      </View> 
     );
   }
 }
