@@ -49,26 +49,26 @@ const HomeStack = createStackNavigator(
             screen : HomeScreen,
             navigationOptions:({navigation}) => ({
                 headerLeft:()=>
-                <Button icon transparent onPress={()=> navigation.navigate('Camera')}>
-                    <Icon name='camera' style={{paddingLeft:10}}/>
-                </Button>
+                    <Button icon transparent onPress={()=> navigation.navigate('Camera')}>
+                        <Icon name='camera' style={{paddingLeft:10}}/>
+                    </Button>
                 ,title: 'Instagram'
                 ,headerRight:()=>
-                    <Button icon transparent onPress={() => navigation.navigate('DirectMessage')}>
+                    <Button icon transparent onPress={() => navigation.navigate('Direct')}>
                         <Icon name='send' style={{paddingRight:10}}/>
                     </Button>
             })
         },
-
-        DirectMessage : {
+        Direct : {
             screen : DirectMessageScreen,
+            navigationOptions:({navigation}) => ({
+                headerShown:false,
+            }),
         },
         Camera:{
             screen: CameraScreen,
             navigationOptions:({navigation}) => ({
                 headerShown:false,
-
-                
             }),
         }
     },
@@ -79,18 +79,28 @@ const HomeStack = createStackNavigator(
 
 HomeStack.navigationOptions = ({ navigation }) => {
     let tabBarVisible;
+    let headerShown;
     if (navigation.state.routes.length > 1) {
       navigation.state.routes.map(route => {
-        if (route.routeName === "Camera") {
+        if (route.routeName === "Camera" || route.routeName === "Direct") {
           tabBarVisible = false;
         } else {
           tabBarVisible = true;
         }
       });
+    }else{
+        navigation.state.routes.map(route => {
+            if (route.routeName === "ChatWindow") {
+              headerShown = false;
+            } else {
+              headerShown = true;
+            }
+          });
     }
   
     return {
-      tabBarVisible
+      tabBarVisible,
+      headerShown
     };
 };
 

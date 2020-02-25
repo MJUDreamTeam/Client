@@ -10,8 +10,7 @@ class LikeComponent extends React.Component{
         const otherImage = activity.otherThumbnail;
         const myPost = activity.myPost;
        
-        return(
-            <View style= {style.container}>
+        return(<View style= {style.container}>
                 <View style= {style.thumbnail}>
                     <Thumbnail source={{uri: otherImage}} />
                 </View>
@@ -29,6 +28,7 @@ class LikeComponent extends React.Component{
                     <Thumbnail square source={{uri: myPost}} />
                 </View>
             </View>
+            
         )
     }
 }

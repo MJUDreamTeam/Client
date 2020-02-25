@@ -48,6 +48,7 @@ class SearchScreen extends React.Component {
     componentDidMount(){
         this._getData();
     }
+    
     render() {
         return (
             <Container>
