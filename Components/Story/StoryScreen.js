@@ -22,36 +22,44 @@ import {
   Col,
 } from 'native-base';
 
+var alreadyRunning = 0;
+
 export default class StoryScreen extends React.Component {
   constructor() {
     super();
-
     this.state = {
       Progress_Value: 0.0,
     };
   }
 
-  Start_Progress = () => {
+  StartProgress = () => {
     this.value = setInterval(() => {
       if (this.state.Progress_Value <= 1) {
         this.setState({Progress_Value: this.state.Progress_Value + 0.01});
       } else {
-        this.Stop_Progress();
+        this.CloseProgress();
       }
     }, 100);
   };
 
-  Stop_Progress = () => {
+  CloseProgress = () => {
     clearInterval(this.value);
     this.props.navigation.goBack();
   };
 
-  Clear_Progress = () => {
-    this.setState({Progress_Value: 0.0});
+  StopProgress = () => {
+    // this.setState({Progress_Value: 0.0});
+    alreadyRunning = this.state.Progress_Value;
+    clearInterval(this.value);
+  };
+
+  ReStartProgress = () => {
+    this.setState({Progress_Value: alreadyRunning});
+    this.StartProgress();
   };
 
   componentDidMount() {
-    this.Start_Progress();
+    this.StartProgress();
   }
   render() {
     return (
@@ -72,14 +80,11 @@ export default class StoryScreen extends React.Component {
                   marginHorizontal: 5,
                   borderColor: 'gray',
                 }}
-                source={{
-                  uri:
-                    'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
-                }}
+                source={{uri: this.props.navigation.getParam('content', 'ddd')}}
               />
               <Text>user id</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.StopProgress()}>
               <Icon
                 name={'md-close'}
                 style={{
@@ -96,8 +101,7 @@ export default class StoryScreen extends React.Component {
               <Image
                 style={styles.image}
                 source={{
-                  uri:
-                    'https://facebook.github.io/react-native/img/tiny_logo.png',
+                  uri: this.props.navigation.getParam('content', 'cccc'),
                 }}
               />
             </Col>
@@ -111,6 +115,7 @@ export default class StoryScreen extends React.Component {
             </Item>
           </View>
           <TouchableOpacity
+            onPress={() => this.ReStartProgress()}
             style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Icon name={'paper-plane'} type={'SimpleLineIcons'} />
           </TouchableOpacity>

@@ -1,5 +1,6 @@
 import {createAppContainer} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import {Platform} from 'react-native';
 
 import MyPosts from '../Components/Profile/MyPosts';
 import TaggedPosts from '../Components/Profile/TaggedPosts';
