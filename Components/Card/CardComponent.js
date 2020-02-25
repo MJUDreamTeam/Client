@@ -1,9 +1,5 @@
 // 앞으로 구현할 피드 목록에서 피드 항목 하나를 담당하게 될 컴포넌트
 import React from 'react';
-<<<<<<< HEAD
-import {Image, Text,ScrollView} from 'react-native';
-import {Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon} from 'native-base';
-=======
 import {Image, Text} from 'react-native';
 import {
   Card,
@@ -15,7 +11,6 @@ import {
   Button,
   Icon,
 } from 'native-base';
->>>>>>> 1e0b21e8816956766587b8a7036b3876374ad0fd
 
 class CardComponent extends React.Component {
   constructor(props) {
