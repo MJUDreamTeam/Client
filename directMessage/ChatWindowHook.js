@@ -6,7 +6,6 @@ import {NavigationContainer} from '@react-navigation/native';
 
 // 카메라 컴포넌트 임포트
 import DMCamera from './DMCameraHook';
-import DMCameraPreview from './DMCameraPreviewHook';
 // 말풍선 컴포넌트 임포트
 import MessageBubble from './MessageBubble';
 import MyMessageBubble from './MyMessageBubble';
