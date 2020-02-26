@@ -70,7 +70,7 @@ function AddMediaNavigator() {
     )
 }
 
-function LibraryNavigator() {
+function LibraryNavigator({navigation}) {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
@@ -84,7 +84,8 @@ function LibraryNavigator() {
                     component={PostScreen}
                     options={{
                         headerTitle: '새 게시물',
-                        headerTitleAlign: 'center'
+                        headerTitleAlign: 'center',
+                        headerRight: () => (<Button title="공유" onPress={() => navigation.goBack()}/>)
                     }}
                 />
             </Stack.Navigator>
