@@ -62,7 +62,7 @@ function VideoStackScreen() {
 
 function AddMediaNavigator() {
     return (
-        <Tab.Navigator initialRouteName='LibraryScreen' screenOptions={{headerTitleAlign: 'center'}}>
+        <Tab.Navigator initialRouteName='LibraryScreen' screenOptions={{headerTitleAlign: 'center'}} backBehavior='none'>
             <Tab.Screen name="LibraryScreen" component={LibraryStackScreen} options={{tabBarLabel: '갤러리'}}/>
             <Tab.Screen name="CameraScreen" component={CameraStackScreen} options={{tabBarLabel: '사진'}}/>
             <Tab.Screen name="VideoScreen" component={VideoStackScreen} options={{tabBarLabel: '비디오'}}/>
