@@ -73,15 +73,17 @@ const HomeStack = createStackNavigator(
           <Button
             icon
             transparent
-            onPress={() => navigation.navigate('DirectMessage')}>
+            onPress={() => navigation.navigate('Direct')}>
             <Icon name="send" style={{paddingRight: 10}} />
           </Button>
         ),
       }),
     },
-
-    DirectMessage: {
+    Direct: {
       screen: DirectMessageScreen,
+      navigationOptions: ({navigation}) => ({
+        headerShown: false,
+      }),
     },
     Camera: {
       screen: CameraScreen,
@@ -97,18 +99,28 @@ const HomeStack = createStackNavigator(
 
 HomeStack.navigationOptions = ({navigation}) => {
   let tabBarVisible;
+  let headerShown;
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === 'Camera') {
+      if (route.routeName === 'Camera' || route.routeName === 'Direct') {
         tabBarVisible = false;
       } else {
         tabBarVisible = true;
+      }
+    });
+  } else {
+    navigation.state.routes.map(route => {
+      if (route.routeName === 'ChatWindow') {
+        headerShown = false;
+      } else {
+        headerShown = true;
       }
     });
   }
 
   return {
     tabBarVisible,
+    headerShown,
   };
 };
 

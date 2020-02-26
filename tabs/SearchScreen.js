@@ -57,10 +57,11 @@ class SearchScreen extends React.Component {
   componentDidMount() {
     this._getData();
   }
+
   render() {
     return (
       <Container>
-        <Header searchBar rounded transparent>
+        <Header searchBar rounded style={{backgroundColor: 'white'}}>
           <Item>
             <Icon name="ios-search" />
             <Button
@@ -107,6 +108,7 @@ const SearchStack = createStackNavigator(
   },
   {
     initialRouteName: 'Search',
+    headerMode: 'none',
   },
 );
 

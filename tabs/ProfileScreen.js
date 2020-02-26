@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 import {
   Header,
@@ -377,6 +378,7 @@ const AppNavigator = createStackNavigator(
     defaultNavigationOptions: {
       headerShown: false,
     },
+    headerMode: 'none',
   },
 );
 export default createAppContainer(AppNavigator);
