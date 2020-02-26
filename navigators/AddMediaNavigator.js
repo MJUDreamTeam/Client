@@ -14,6 +14,7 @@ const LibraryStack = createStackNavigator();
 const CameraStack = createStackNavigator();
 const VideoStack = createStackNavigator();
 
+// 라이브러리 스크린 스택처리
 function LibraryStackScreen({navigation}) {
     return (
         <LibraryStack.Navigator>
@@ -30,6 +31,7 @@ function LibraryStackScreen({navigation}) {
     )
 }
 
+// 카메라 스크린 스택처리
 function CameraStackScreen() {
     return (
         <CameraStack.Navigator>
@@ -45,6 +47,7 @@ function CameraStackScreen() {
     )
 }
 
+// 비디오 스크린 스택처리
 function VideoStackScreen() {
     return (
         <VideoStack.Navigator>
@@ -60,6 +63,7 @@ function VideoStackScreen() {
     )
 }
 
+// 세개 스크린 탭 네비게이터 처리
 function AddMediaNavigator() {
     return (
         <Tab.Navigator initialRouteName='LibraryScreen' screenOptions={{headerTitleAlign: 'center'}} backBehavior='none'>
@@ -70,6 +74,7 @@ function AddMediaNavigator() {
     )
 }
 
+// 새 게시물 스크린 스택 추가
 function LibraryNavigator({navigation}) {
     return (
         <NavigationContainer>
