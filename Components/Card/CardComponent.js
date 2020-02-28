@@ -13,7 +13,6 @@ import {
 } from 'native-base';
 
 function CardComponent(props) {
-
   const {board} = props;
 
   return (
@@ -29,17 +28,18 @@ function CardComponent(props) {
             />
           </Button>
           <Body>
-            <Text>강영우</Text>
-            {/*<Text>{user.name}</Text>*/}
+            <Text> 강영우 </Text> {/*<Text>{user.name}</Text>*/}
             {/*<Text note>{board.date}</Text>*/}
-            <Text note>Jan 29, 2020</Text>
+            <Text note> Jan 29, 2020 </Text>
           </Body>
         </Left>
         <Right>
           <Button transparent>
             <Icon
               name="ios-more"
-              style={{color: 'black'}}
+              style={{
+                color: 'black',
+              }}
               onPress={() => {
                 alert('더보기');
               }}
@@ -48,17 +48,16 @@ function CardComponent(props) {
         </Right>
       </CardItem>
       <CardItem cardBody>
-        <Image
-          source={{uri: board.url}}
-          style={style.picture}
-        />
+        <Image source={{uri: board.url}} style={style.picture} />
       </CardItem>
       <CardItem style={{height: 45}}>
         <Left>
           <Button transparent>
             <Icon
               name="ios-heart"
-              style={{color: 'black'}}
+              style={{
+                color: 'black',
+              }}
               onPress={() => {
                 alert('좋아요');
               }}
@@ -84,19 +83,26 @@ function CardComponent(props) {
           </Button>
         </Left>
       </CardItem>
-      <CardItem style={{height: 20}}>
-        <Text>101 likes</Text>
+      <CardItem
+        style={{
+          height: 20,
+        }}>
+        <Text> 101 likes </Text>
       </CardItem>
       <CardItem>
         <Text>
-          <Text style={{fontWeight: 'bold'}}>강영우 </Text>
+          <Text
+            style={{
+              fontWeight: 'bold',
+            }}>
+            강영우
+          </Text>
           흥흥항 이제 너무 재밌당 히히히히 뭐가 어떻게 되는지는 잘 모르겠지만
           지금 만들어 보니너무 기쁘다 하하하하
         </Text>
       </CardItem>
     </Card>
   );
-  
 }
 
 export default CardComponent;
@@ -107,6 +113,6 @@ const style = StyleSheet.create({
     height: 100,
     borderWidth: 1,
     resizeMode: 'cover',
-    aspectRatio: 1
-  }
-})
+    aspectRatio: 1,
+  },
+});

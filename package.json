@@ -18,6 +18,7 @@
     "@react-navigation/stack": "5.0.5",
     "@react-navigation/tabs": "0.0.0-alpha.12",
     "eslint-plugin-react-hooks": "2.4.0",
+    "jshint": "2.11.0",
     "native-base": "2.13.8",
     "react": "16.9.0",
     "react-addons-update": "15.6.2",

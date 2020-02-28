@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {FlatList} from 'react-native';
 import CardComponent from './CardComponent';
 import StoryHeaderList from '../Story/StoryHeaderList';
 
 class CardList extends React.Component {
+
   state = {boards: [], page: 1, refreshing: false};
 
   _getBoardData = () => {
