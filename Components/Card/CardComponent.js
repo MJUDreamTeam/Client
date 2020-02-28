@@ -19,7 +19,11 @@ function CardComponent(props) {
     <Card>
       <CardItem style={{height: 70}}>
         <Left>
-          <Button transparent>
+          <Button
+            transparent
+            onPress={() => {
+              alert('최근 스토리');
+            }}>
             <Thumbnail
               // source={{uri: user.thumbnail}}
               source={{
@@ -28,9 +32,8 @@ function CardComponent(props) {
             />
           </Button>
           <Body>
-            <Text> 강영우 </Text> {/*<Text>{user.name}</Text>*/}
-            {/*<Text note>{board.date}</Text>*/}
-            <Text note> Jan 29, 2020 </Text>
+            <Text> 강영우{/*<Text>{user.name}</Text>*/}</Text> 
+            <Text note> Jan 29, 2020 {/*<Text note>{board.date}</Text>*/}</Text> 
           </Body>
         </Left>
         <Right>
