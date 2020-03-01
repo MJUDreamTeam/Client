@@ -35,7 +35,7 @@ const TabNavigator = createBottomTabNavigator(
                 tabBarIcon: ({tintColor}) => (
                     <Icon name='ios-add-circle-outline' style={{color: tintColor}}/>
                 ),
-                tabBarVisible: false
+                tabBarVisible: false,
             })
         },
         Likes: {

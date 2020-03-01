@@ -4,7 +4,7 @@ import {View, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Styl
 import MediaSwitchButton from "./MediaSwitchButton";
 import SeparatorLine from "./SeparatorLine";
 
-function PostScreen(props) {
+function PostScreen({route}) {
 
     const [text, setText] = useState('');
     const [textHeight, setTextHeight] = useState(0);
@@ -13,7 +13,7 @@ function PostScreen(props) {
         <SafeAreaView style={style.container}>
             <ScrollView>
                 <View style={{marginVertical: '1%', flexDirection: 'row', alignItems: 'center'}}>
-                    <Image style={{width: 50, height: 50}} source={{uri: 'https://rdd9223.github.io/assets/images/profile.jpg'}}/>
+                    <Image style={{width: 50, height: 50}} source={{uri: route.params.picture}}/>
                     <TextInput
                         textAlignVertical={'top'}
                         multiline

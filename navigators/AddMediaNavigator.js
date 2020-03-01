@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import CameraScreen from "./CameraScreen";
 import VideoScreen from '../Components/AddMedia/VideoScreen';
 import LibraryScreen from '../Components/AddMedia/LibraryScreen'
 import {createStackNavigator} from "@react-navigation/stack";
-import {NavigationContainer, StackActions} from "@react-navigation/native";
+import {NavigationContainer} from "@react-navigation/native";
 import PostScreen from "../Components/AddMedia/PostScreen";
 
 const Tab = createBottomTabNavigator();
@@ -21,11 +21,6 @@ function LibraryStackScreen({navigation}) {
             <LibraryStack.Screen
                 name={"Library"}
                 component={LibraryScreen}
-                options={{
-                    headerRight: () => (<Button title="Next" onPress={() => navigation.push('Post')}/>),
-                    headerTitleAlign: 'center',
-                    headerTitle: '갤러리'
-                }}
             />
         </LibraryStack.Navigator>
     )
@@ -76,6 +71,7 @@ function AddMediaNavigator() {
 
 // 새 게시물 스크린 스택 추가
 function LibraryNavigator({navigation}) {
+
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
@@ -90,7 +86,7 @@ function LibraryNavigator({navigation}) {
                     options={{
                         headerTitle: '새 게시물',
                         headerTitleAlign: 'center',
-                        headerRight: () => (<Button title="공유" onPress={() => navigation.dispatch(StackActions.pop(2))}/>)
+                        headerRight: () => (<Button title="공유" onPress={() => navigation.goBack()}/>)
                     }}
                 />
             </Stack.Navigator>

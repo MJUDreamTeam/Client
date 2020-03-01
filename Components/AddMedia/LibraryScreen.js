@@ -7,13 +7,19 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Button
 } from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
 
-const LibraryScreen = () => {
+const LibraryScreen = ({navigation}) => {
   const [photos, setPhotos] = useState([]);
   const [pickPhoto, setPickPhoto] = useState(null);
 
+  navigation.setOptions({
+    headerRight: () => (<Button title="Next" onPress={() => navigation.navigate('Post', {picture: pickPhoto})}/>),
+    headerTitleAlign: 'center',
+    headerTitle: '갤러리'
+  })
   const _getPermissionReadExternalStorage = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -67,7 +73,7 @@ const LibraryScreen = () => {
         </View>
         <View style={styles.imageGrid}>
           {photos.map((p, i) => (
-            <TouchableOpacity onPress={() => _updatePickPhoto(p)}>
+            <TouchableOpacity onPress={() => {_updatePickPhoto(p)}}>
               <Image
                 key={i}
                 style={styles.image}
