@@ -11,7 +11,11 @@ class AddStoryComponent extends React.Component {
     return (
       <TouchableOpacity
         style={{flex: 1, width: 57, margin: 5}}
-        onPress={() => alert('스토리추가')}>
+        onPress={() =>
+          this.props.navigation.navigate('AddStoryHighlight', {
+            highlight: this.props.highlight,
+          })
+        }>
         <Thumbnail
           style={{borderColor: 'gray', borderWidth: 1}}
           // source={{uri: user.image}} />

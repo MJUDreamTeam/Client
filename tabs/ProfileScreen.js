@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 import {
   Header,
   Icon,
@@ -25,10 +32,13 @@ import EditProfile from '../Components/Profile/EditProfile';
 import FollowScreen from '../Components/Profile/FollowScreen';
 //스토리 드롭다운 뷰
 import Accordion from '@dooboo-ui/native-accordion';
+
 import StoryHeaderComponent from '../Components/Story/StoryHeaderComponent';
 import AddStoryComponent from '../Components/Story/AddStoryComponent';
-import {ScrollView} from 'react-native-gesture-handler';
 import StoryScreen from '../Components/Story/StoryScreen';
+import StoryHighlightStorage from '../Components/Story/StoryHighlightStorage';
+import StoryStorage from '../Components/Story/StoryStorage';
+import SetStoryHighlightOption from '../Components/Story/SetStoryHighlightOption';
 
 var userData = {
   name: '이민환',
@@ -146,7 +156,7 @@ const DESTRUCTIVE_INDEX = 3;
 const CANCEL_INDEX = 4;
 
 class ProfileScreen extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.goStory = this.goStory.bind(this);
   }
@@ -162,7 +172,10 @@ class ProfileScreen extends React.Component {
   };
   goStory = () => {
     if (this.state.Data.isStory) {
-      this.props.navigation.navigate('Story');
+      this.props.navigation.navigate('Story', {
+        content:
+          'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
+      });
     } else {
       alert('ssss');
     }
@@ -185,7 +198,13 @@ class ProfileScreen extends React.Component {
                     destructiveButtonIndex: DESTRUCTIVE_INDEX,
                   },
                   buttonIndex => {
-                    alert(buttonIndex);
+                    switch (buttonIndex) {
+                      case 1:
+                        this.props.navigation.navigate('StoryStorage', {
+                          myStory:
+                            'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
+                        });
+                    }
                   },
                 )
               }>
@@ -328,7 +347,10 @@ class ProfileScreen extends React.Component {
                 </Text>
               </View>
               <ScrollView horizontal>
-                <AddStoryComponent />
+                <AddStoryComponent
+                  navigation={this.props.navigation}
+                  highlight={storyHighlight}
+                />
                 {storyHighlight.map(story => {
                   return <StoryHeaderComponent key={story.key} user={story} />;
                 })}
@@ -347,16 +369,19 @@ const AppNavigator = createStackNavigator(
     Edit: EditProfile,
     Follow: FollowScreen,
     Story: StoryScreen,
+    AddStoryHighlight: StoryHighlightStorage,
+    SetOption: SetStoryHighlightOption,
+    StoryStorage: StoryStorage,
   },
   {
     initialRouteName: 'Home',
     defaultNavigationOptions: {
       headerShown: false,
     },
+    headerMode: 'none',
   },
 );
 export default createAppContainer(AppNavigator);
-
 //export default ProfileScreen;
 const styles = StyleSheet.create({
   container: {

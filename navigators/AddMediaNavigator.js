@@ -74,7 +74,7 @@ function LibraryNavigator({navigation}) {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
+            <Stack.Navigator initialRouteName='AddMediaNavigator' screenOptions={{headerTitleAlign: 'center'}}>
                 <Stack.Screen
                     name='AddMediaNavigator'
                     component={AddMediaNavigator}
