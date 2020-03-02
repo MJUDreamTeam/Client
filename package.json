@@ -13,17 +13,12 @@
     "@dooboo-ui/native-accordion": "0.4.4",
     "@react-native-community/cameraroll": "1.3.1",
     "@react-native-community/masked-view": "0.1.6",
-<<<<<<< HEAD
     "@react-navigation/bottom-tabs": "5.0.6",
     "@react-navigation/native": "5.0.5",
     "@react-navigation/stack": "5.0.5",
     "@react-navigation/tabs": "0.0.0-alpha.12",
     "eslint-plugin-react-hooks": "2.4.0",
     "jshint": "2.11.0",
-=======
-    "@react-navigation/native": "5.0.5",
-    "@react-navigation/stack": "5.0.5",
->>>>>>> 6632835ca8f9e789dc2f9e8aaa41f9f81c784f68
     "native-base": "2.13.8",
     "react": "16.9.0",
     "react-addons-update": "15.6.2",
